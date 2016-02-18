@@ -1,0 +1,6 @@
+C:\Users\judah\Documents\GitHub\BillPayer\BillPayerConsole\bin\Debug\BillPayerConsole.exe.config
+C:\Users\judah\Documents\GitHub\BillPayer\BillPayerConsole\bin\Debug\BillPayerConsole.exe
+C:\Users\judah\Documents\GitHub\BillPayer\BillPayerConsole\bin\Debug\BillPayerConsole.pdb
+C:\Users\judah\Documents\GitHub\BillPayer\BillPayerConsole\obj\Debug\BillPayerConsole.csprojResolveAssemblyReference.cache
+C:\Users\judah\Documents\GitHub\BillPayer\BillPayerConsole\obj\Debug\BillPayerConsole.exe
+C:\Users\judah\Documents\GitHub\BillPayer\BillPayerConsole\obj\Debug\BillPayerConsole.pdb
