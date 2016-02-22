@@ -1,0 +1,15 @@
+SRS Changelog
+---------------
+Date: 2/21/2016
+Change:
+
+-Changed "room" to "household" for more clarity
+-Changed "Head roommate" to "Head of Household" for more clarity
+-Updated "View Household" Use Case
+-Added more Use Cases:
+    -View Bill
+    -Pay Bill
+    -View Household Residents
+    -View Household Listings
+
+----------------
