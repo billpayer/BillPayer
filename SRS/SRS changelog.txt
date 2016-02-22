@@ -11,5 +11,7 @@ Change:
     -Pay Bill
     -View Household Residents
     -View Household Listings
-
+-Added table for Use Cases
+-Update background
+-Update High Level Flow
 ----------------
