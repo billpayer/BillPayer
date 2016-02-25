@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DataModels\Bill.cs" />
     <Compile Include="DataModels\BillSplit.cs" />
     <Compile Include="DataModels\HouseHold.cs" />
