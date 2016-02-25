@@ -1,5 +1,0 @@
-C:\Users\judah\Documents\GitHub\BillPayer\BillPayerCore\bin\Debug\BillPayerCore.dll
-C:\Users\judah\Documents\GitHub\BillPayer\BillPayerCore\bin\Debug\BillPayerCore.pdb
-C:\Users\judah\Documents\GitHub\BillPayer\BillPayerCore\obj\Debug\BillPayerCore.csprojResolveAssemblyReference.cache
-C:\Users\judah\Documents\GitHub\BillPayer\BillPayerCore\obj\Debug\BillPayerCore.dll
-C:\Users\judah\Documents\GitHub\BillPayer\BillPayerCore\obj\Debug\BillPayerCore.pdb
