@@ -15,13 +15,20 @@ namespace BillPayerCore.DataModels
         /// </summary>
         public float Size { get; set; }
 
-        public int Room { get; set; }
-        public int Bathrooms { get; set; }
+        public int Rooms { get; set; }
+        public float Bathrooms { get; set; }
         public string Address { get; set; }
         public List<User> Roommates { get; set; }
         public User HeadOfHouseHold { get; set; }
         public List<Bill> Bills { get; set; }
 
+        public HouseHold(float size, int rooms, float baths, string address)
+        {
+            Size = size;
+            Rooms = rooms;
+            Bathrooms = baths;
+            Address = address;
+        }
         public void AddRoommate(User user)
         {
             
@@ -45,6 +52,14 @@ namespace BillPayerCore.DataModels
         public void EditBill(Bill bill)
         {
 
+        }
+
+        public override string ToString()
+        {
+            return "Square Feet: " + Size
+                + "\nAmount of rooms: " + Rooms
+                + "\nAmount of baths: " + Bathrooms
+                + "\nAddress: " + Address;
         }
     }
 }
