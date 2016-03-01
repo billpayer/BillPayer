@@ -1,5 +1,6 @@
 ﻿using BillPayerConsole.TestNameSpace;
 using System;
+using BillPayerCore.DataModels;
 
 namespace BillPayerConsole
 {
@@ -7,12 +8,29 @@ namespace BillPayerConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, world.");
+            Console.WriteLine("Welcome to Bill Paying");
 
-            OtherClass other = new OtherClass();
-            TestClass test = new TestClass();
-            test.WriteHelloWorld(other.StringHelloWorld());
+            Console.WriteLine("Create User");
+            Console.WriteLine("Enter First Name");
+
+            var name = Console.ReadLine();
+
+            Console.WriteLine("Enter Last Name");
+            var lastName = Console.ReadLine();
+
+            Console.WriteLine("Enter Email");
+            var email = Console.ReadLine();
+
+            var user = new User();
+            user.FirstName = name;
+            user.LastName = lastName;
+            user.Email = email;
+
+
+            Console.WriteLine(user.ToString());
+
             Console.ReadLine();
+
         }
     }
 }
