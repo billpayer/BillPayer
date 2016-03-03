@@ -24,6 +24,8 @@ namespace BillPayerCore.DataModels
 
         public HouseHold(float size, int rooms, float baths, string address)
         {
+            Roommates = new List<User>();
+            Bills = new List<Bill>();
             Size = size;
             Rooms = rooms;
             Bathrooms = baths;
