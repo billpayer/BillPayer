@@ -16,6 +16,14 @@ namespace BillPayerCore.DataModels
         public bool Paid { get; set; }
         public List<BillSplit> Splits { get; set; }
 
+        public Bill(string billName, decimal cost, bool recuring)
+        {
+            Name = billName;
+            DateDue = DateTime.Now;
+            Cost = cost;
+            Recuring = recuring;
+            Paid = false;
+        }
         public void MarkAsPaid()
         {
             
@@ -24,6 +32,15 @@ namespace BillPayerCore.DataModels
         public void SplitBill()
         {
             
+        }
+        public override string ToString()
+        {
+            return "\nName of bill: "
+                + Name
+                + "\nDue date: "
+                + DateDue
+                + "\nAmount: "
+                + Cost;
         }
 
     }

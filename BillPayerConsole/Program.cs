@@ -44,11 +44,26 @@ namespace BillPayerConsole
             Console.Write("Enter address of household: ");
             string address = Console.ReadLine();
 
-            var househoold = new HouseHold(sqfoot, rooms, bath, address);
+            var household = new HouseHold(sqfoot, rooms, bath, address);
+            Console.WriteLine(household.ToString());
+            household.HeadOfHouseHold = user;
 
-            househoold.HeadOfHouseHold = user;
+            Console.Write("Give name to bilil: ");
+            var billName = Console.ReadLine();
+            Console.Write("What is the cost of the bill?: ");
+            decimal costInput = decimal.Parse(Console.ReadLine());
 
-            Console.WriteLine(househoold.ToString());
+            //Console.Write("What is the due date?: (mm/dd/yyyy) ");
+            //string dueDate = Console.ReadLine();
+
+
+            Console.Write("Is this a recuring bill?: (Yes/No) ");
+            string recuringInput = Console.ReadLine();
+            bool recuring = true;
+             if(recuringInput != "Yes"|| recuringInput != "yes")
+                recuring = false;
+            var bill = new Bill(billName,costInput, recuring);
+            Console.WriteLine(bill.ToString());
 
 
             Console.ReadLine();
