@@ -19,9 +19,25 @@ namespace BillPayerCore.DataModels
 
         public string Sex { get; set; }
 
-        public void ViewHouseHold()
+        public User()
         {
-            
+
+        }
+
+        public User(int id, string first, string last, string email, string pass, string sex)
+        {
+            Id = id;
+            FirstName = first;
+            LastName = last;
+            Email = email;
+            Password = pass;
+            Sex = sex;
+        }
+
+        public void ViewHouseHold(HouseHold household)
+        {
+            Console.WriteLine(household.ToString());
+            household.ViewResidents();
         }
 
         public HouseHold CreateHousehold()
@@ -31,22 +47,26 @@ namespace BillPayerCore.DataModels
 
         public void ManageHousehold()
         {
-            
+
         }
 
         public void JoinHousehold()
         {
-            
+
         }
 
         public void LeaveHousehold(HouseHold houseHold)
         {
-            
+
         }
 
         public override string ToString()
         {
-            return FirstName + " " + LastName + "\n" + Email;
+            return "ID: " + Id +
+                    "\nName: " + FirstName + LastName +
+                    "\nEmail: " + Email +
+                    "\nPassword: " + Password +
+                    "\nSex: " + Sex;
         }
     }
 }
