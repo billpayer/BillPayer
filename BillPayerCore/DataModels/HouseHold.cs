@@ -22,10 +22,13 @@ namespace BillPayerCore.DataModels
         public User HeadOfHouseHold { get; set; }
         public List<Bill> Bills { get; set; }
 
-        public HouseHold(float size, int rooms, float baths, string address)
+
+        public HouseHold(int id, float size, int rooms, float baths, string address)
         {
             Roommates = new List<User>();
             Bills = new List<Bill>();
+            Id = id;
+
             Size = size;
             Rooms = rooms;
             Bathrooms = baths;
@@ -33,35 +36,64 @@ namespace BillPayerCore.DataModels
         }
         public void AddRoommate(User user)
         {
-            
+            Roommates.Add(user);
         }
 
         public void RemoveRoommate(User user)
         {
-
+            Roommates.Remove(user);
         }
 
         public void AddBill(Bill bill)
         {
-            
+            Bills.Add(bill);
         }
 
         public void RemoveBill(Bill bill)
         {
-
+            Bills.Remove(bill);
         }
 
         public void EditBill(Bill bill)
         {
 
         }
+        public void ViewResidents()
+        {
+            Console.WriteLine("Residents of this household: ");
+            if (Roommates.Count == 0)
+            {
+                Console.WriteLine("None");
+            }
+
+            foreach (User roommate in Roommates)
+            {
+                Console.WriteLine(roommate.FirstName + " " + roommate.LastName);
+            }
+
+        }
+        public void ViewBills()
+        {
+            if (Bills.Count == 0)
+            {
+                Console.WriteLine("None");
+            }
+
+            foreach (Bill bill in Bills)
+            {
+                Console.WriteLine("Name: " + bill.Name +
+                                  "\tCost: " + bill.Cost);
+            }
+        }
 
         public override string ToString()
         {
-            return "Square Feet: " + Size
-                + "\nAmount of rooms: " + Rooms
-                + "\nAmount of baths: " + Bathrooms
-                + "\nAddress: " + Address;
+            return "ID: " + Id +
+                    "\nSize: " + Size +
+                    "\nRooms: " + Rooms +
+                    "\nBathrooms: " + Bathrooms +
+                    "\nAddress: " + Address;
+
         }
     }
 }

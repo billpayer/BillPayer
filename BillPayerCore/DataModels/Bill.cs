@@ -16,8 +16,9 @@ namespace BillPayerCore.DataModels
         public bool Paid { get; set; }
         public List<BillSplit> Splits { get; set; }
 
-        public Bill(string billName, decimal cost, bool recuring)
+        public Bill(int id, string billName, decimal cost, bool recuring)
         {
+            Id = id;
             Name = billName;
             DateDue = DateTime.Now;
             Cost = cost;
@@ -26,21 +27,31 @@ namespace BillPayerCore.DataModels
         }
         public void MarkAsPaid()
         {
-            
+
         }
 
         public void SplitBill()
         {
-            
+
         }
         public override string ToString()
         {
-            return "\nName of bill: "
-                + Name
-                + "\nDue date: "
-                + DateDue
-                + "\nAmount: "
-                + Cost;
+            if (Recuring == false)
+            {
+                return "ID : " + Id
+                + "\nName of bill: " + Name
+                + "\nDue date: " + DateDue
+                + "\nAmount: " + Cost
+                + "\nRecurring: No";
+            }
+            else
+            {
+                return "ID: " + Id
+                + "\nName of bill: " + Name
+                + "\nDue date: " + DateDue
+                + "\nAmount: " + Cost
+                + "\nRecurring: Yes";
+            }
         }
 
     }
