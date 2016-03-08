@@ -67,7 +67,7 @@ namespace BillPayerConsole
             Console.Write("Enter address of household: ");
             string address = Console.ReadLine();
 
-            var household = new HouseHold(sqfoot, rooms, bath, address);
+            var household = new HouseHold(101, sqfoot, rooms, bath, address);
             Console.WriteLine(household.ToString());
             household.Roommates.Add(user);
             household.HeadOfHouseHold = user;
@@ -86,7 +86,7 @@ namespace BillPayerConsole
             bool recuring = true;
             if (recuringInput != "Yes" || recuringInput != "yes")
                 recuring = false;
-            var bill = new Bill(billName, costInput, recuring);
+            var bill = new Bill(102, billName, costInput, recuring);
             household.Bills.Add(bill);
             Console.WriteLine(bill.ToString());
 
