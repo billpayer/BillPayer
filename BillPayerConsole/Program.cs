@@ -15,11 +15,11 @@ namespace BillPayerConsole
             Created two users, two bills, and two households to test
             --------------------------------------------------------------------------*/
             // Create two users
-            var user1 = new User(int.Parse("100"), "Vinh", "Vu", "vinhvu100@gmail.com",
+            var user1 = new User(100, "Vinh", "Vu", "vinhvu100@gmail.com",
                             "123password", "male");
-            var user2 = new User(int.Parse("101"), "Josh", "Cantero",
+            var user2 = new User(101, "Josh", "Cantero",
                             "cante008@cougars.csusm.edu", "password123", "female");
-            var user3 = new User(int.Parse("102"), "Random", "Person",
+            var user3 = new User(102, "Random", "Person",
                             "someone108@cougars.csusm.edu", "password", "female");
 
             Console.WriteLine("\nCreated two users");
@@ -27,9 +27,9 @@ namespace BillPayerConsole
             Console.WriteLine("\n" + user2.ToString());
 
             //Create two bills
-            var bill1 = new Bill(int.Parse("300"), "rent", decimal.Parse("800"),
+            var bill1 = new Bill(int.Parse("300"), "rent", 800,
                             bool.Parse("true"));
-            var bill2 = new Bill(int.Parse("301"), "utility", decimal.Parse("300"),
+            var bill2 = new Bill(int.Parse("301"), "utility", 300,
                             bool.Parse("false"));
 
             Console.WriteLine("\nCreated two bills");
@@ -37,8 +37,8 @@ namespace BillPayerConsole
             Console.WriteLine("\n" + bill2.ToString());
 
             // Create one households
-            var household1 = new HouseHold(int.Parse("200"), float.Parse("1000.32"),
-                            int.Parse("3"), float.Parse("2.5"), "123 Random Street");
+            var household1 = new HouseHold(200, 1000.32f,
+                            3, 2.5f, "123 Random Street");
 
             /*--------------------------------------------------------------------------
             First chunk here used to test the functions of Household
