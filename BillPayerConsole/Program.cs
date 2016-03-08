@@ -27,10 +27,8 @@ namespace BillPayerConsole
             Console.WriteLine("\n" + user2.ToString());
 
             //Create two bills
-            var bill1 = new Bill(int.Parse("300"), "rent", 800,
-                            bool.Parse("true"));
-            var bill2 = new Bill(int.Parse("301"), "utility", 300,
-                            bool.Parse("false"));
+            var bill1 = new Bill(300, "rent", 800, true);
+            var bill2 = new Bill(301, "utility", 300, false);
 
             Console.WriteLine("\nCreated two bills");
             Console.WriteLine("\n" + bill1.ToString());
