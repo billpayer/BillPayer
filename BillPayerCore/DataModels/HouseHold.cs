@@ -22,16 +22,13 @@ namespace BillPayerCore.DataModels
         public User HeadOfHouseHold { get; set; }
         public List<Bill> Bills { get; set; }
 
-        public HouseHold()
-        {
-
-        }
 
         public HouseHold(int id, float size, int rooms, float baths, string address)
         {
             Roommates = new List<User>();
             Bills = new List<Bill>();
             Id = id;
+
             Size = size;
             Rooms = rooms;
             Bathrooms = baths;
