@@ -34,6 +34,12 @@ namespace BillPayerCore.DataModels
             Sex = sex;
         }
 
+        public bool VerifyPassword(string passwordAttemp)
+        {
+            //salt, hash, check
+            return true;
+        }
+
         public void ViewHouseHold(HouseHold household)
         {
             Console.WriteLine(household.ToString());

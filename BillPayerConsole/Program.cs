@@ -9,7 +9,7 @@ namespace BillPayerConsole
         static void Main(string[] args)
         {
             BasicDBUsage.DbTest();
-            return;
+            //return;
             Console.WriteLine("Welcome to Bill Paying");
 
 
