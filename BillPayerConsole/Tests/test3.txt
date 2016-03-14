@@ -1,0 +1,38 @@
+﻿EVENTS:
+-4 users created
+-user 100 creates household [200]
+-user 100 creates household [201]
+-user 101 views household 200
+-user 102 views household 200
+-user 103 views household 200
+-user 103 views household 201
+-user 101 request to join household 200
+-user 102 request to join household 200
+-user 103 request to join household 201
+-user 100 accepts user 101 request
+-user 100 accepts user 102 request
+-user 100 decline user 103 request
+
+create_user 100 Vinh Vu vinhvu100@gmail.com 123password male
+create_user 101 Josh Cantero cante008@gmail.com password123 female
+create_user 102 Judah Perez judah@gmail.com password male
+create_user 103 Preston Richey preston@gmail.com password male
+view_all_users
+user_create_household 100 200 1000.32 3 2.5 123_random_street
+user_create_household 100 201 2000.50 3 5 4321_other_street
+view_user_households 100
+user_view_household 101 200
+user_view_household 102 200
+user_view_household 103 200
+user_view_household 103 201
+user_request 101 200
+user_request 102 200
+user_request 103 201
+view_house_requests 200
+user_view_all_requests 100
+user_accepts_request 100 101 200
+user_accepts_request 100 102 200
+user_declines_request 100 103 201
+user_view_all_requests 100
+view_residents 200
+view_residents 201

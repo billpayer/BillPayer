@@ -1,0 +1,39 @@
+﻿EVENT:
+-5 users created
+-1 house hold created
+-5 bills created
+-Add all 5 users to same household
+-Removed 1 user
+-Add all 5 bills to same household
+-Removed 1 bill
+
+create_user 100 Vinh Vu vinhvu100@gmail.com 123password male
+create_user 101 Josh Cantero cante008@gmail.com password123 female
+create_user 102 Judah Perez judah@gmail.com password male
+create_user 103 Preston Richey preston@gmail.com password male
+create_user 104 Matthew Williams matt@gmail.com password male
+create_household 200 1000.32 3 2.5 123_random_street
+create_bill 300 utility 300 true
+create_bill 301 rent 800 false
+create_bill 302 television 150 true
+create_bill 303 entertainment 100 false
+create_bill 304 food 430 true
+view_all_users
+view_all_households
+view_all_bills 
+add_roommate 200 100
+add_roommate 200 101
+add_roommate 200 102
+add_roommate 200 103
+add_roommate 200 104
+view_residents 200
+remove_roommate 200 101
+view_residents 200
+add_bill 200 300
+add_bill 200 301
+add_bill 200 302
+add_bill 200 303
+add_bill 200 304
+view_bills 200
+remove_bill 200 300
+view_bills 200

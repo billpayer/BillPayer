@@ -14,21 +14,28 @@ namespace BillPayerCore.DataModels
         /// Square Feet/units
         /// </summary>
         public float Size { get; set; }
-
         public int Rooms { get; set; }
         public float Bathrooms { get; set; }
         public string Address { get; set; }
-        public List<User> Roommates { get; set; }
         public User HeadOfHouseHold { get; set; }
         public List<Bill> Bills { get; set; }
+        public List<User> Roommates { get; set; }
+        public List<User> Requests { get; set; }
 
+        public HouseHold()
+        {
+            Requests = new List<User>();
+            Roommates = new List<User>();
+            Bills = new List<Bill>();
+        }
 
         public HouseHold(int id, float size, int rooms, float baths, string address)
         {
+            Requests = new List<User>();
             Roommates = new List<User>();
             Bills = new List<Bill>();
-            Id = id;
 
+            Id = id;
             Size = size;
             Rooms = rooms;
             Bathrooms = baths;
@@ -43,7 +50,14 @@ namespace BillPayerCore.DataModels
         {
             Roommates.Remove(user);
         }
-
+        public void AddRequest(User user)
+        {
+            Requests.Add(user);
+        }
+        public void DeclineRequest(User user)
+        {
+            return;
+        }
         public void AddBill(Bill bill)
         {
             Bills.Add(bill);
@@ -52,6 +66,20 @@ namespace BillPayerCore.DataModels
         public void RemoveBill(Bill bill)
         {
             Bills.Remove(bill);
+        }
+        public void ViewRequests()
+        {
+            Console.WriteLine("\tID\tName");
+            foreach (User user in Requests)
+            {
+                Console.WriteLine("\t" + user.Id + "\t" + user.FirstName +
+                        " " + user.LastName);
+            }
+        }
+
+        public void RemoveRequest(User user)
+        {
+            Requests.Remove(user);
         }
 
         public void EditBill(Bill bill)
@@ -64,11 +92,12 @@ namespace BillPayerCore.DataModels
             if (Roommates.Count == 0)
             {
                 Console.WriteLine("None");
+                return;
             }
 
             foreach (User roommate in Roommates)
             {
-                Console.WriteLine(roommate.FirstName + " " + roommate.LastName);
+                Console.WriteLine("\t" + roommate.FirstName + " " + roommate.LastName);
             }
 
         }
@@ -77,22 +106,24 @@ namespace BillPayerCore.DataModels
             if (Bills.Count == 0)
             {
                 Console.WriteLine("None");
+                return;
             }
 
+            Console.WriteLine("\tID\t" + "Name");
             foreach (Bill bill in Bills)
             {
-                Console.WriteLine("Name: " + bill.Name +
-                                  "\tCost: " + bill.Cost);
+                Console.WriteLine("\t" + bill.Id + "\t" +
+                                  bill.Name);
             }
         }
 
         public override string ToString()
         {
-            return "ID: " + Id +
-                    "\nSize: " + Size +
-                    "\nRooms: " + Rooms +
-                    "\nBathrooms: " + Bathrooms +
-                    "\nAddress: " + Address;
+            return "\tID: " + Id +
+                    "\n\tSize: " + Size +
+                    "\n\tRooms: " + Rooms +
+                    "\n\tBathrooms: " + Bathrooms +
+                    "\n\tAddress: " + Address;
 
         }
     }
