@@ -75,9 +75,10 @@ namespace BillPayerCore.DataModels
             }
         }
 
-        public void RequestToJoin(HouseHold household)
+        public void RequestToJoin(HouseHold household,User user)
         {
             myRequests.Add(household);
+            household.AddRequest(user);
         }
 
         public void ViewHouseholdRequests()

@@ -21,7 +21,7 @@ namespace BillPayerConsole
             /// I am using a pseudo database for now.
             /// </summary>
 
-            string[] texts = System.IO.File.ReadAllLines(@"C:\Users\VinhVu\Desktop\code_stuff\Github\BillPayer\BillPayerConsole\tests\test3.txt");
+            string[] texts = System.IO.File.ReadAllLines(@"C:\Users\joshua\Documents\GitHub\BillPayer\BillPayerConsole\Tests\test3.txt");
             string[] split_text;
             List<User> all_users = new List<User>();
             List<HouseHold> all_households = new List<HouseHold>();
@@ -179,8 +179,8 @@ namespace BillPayerConsole
                         Console.WriteLine("\nUser " + correct_user.Id + " request to join household " +
                                 correct_household.Id);
 
-                        correct_user.RequestToJoin(correct_household);
-                        correct_household.AddRequest(correct_user);
+                        correct_user.RequestToJoin(correct_household,correct_user);
+                       // correct_household.AddRequest(correct_user);
                     }
                     else
                         Console.WriteLine("\nFailed: User could not request to join");
