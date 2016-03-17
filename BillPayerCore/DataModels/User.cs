@@ -53,6 +53,7 @@ namespace BillPayerCore.DataModels
             return true;
         }
 
+        //make sure it is the right user
         public bool VerifyPassword(string passwordAttempt)
         {
 

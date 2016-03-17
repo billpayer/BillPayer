@@ -30,8 +30,18 @@ namespace BillPayerCore.DataModels
 
         }
 
-        public void SplitBill()
+        public void SplitBill(List<User> roommates )
         {
+            decimal portion = Cost/roommates.Count;
+
+            foreach (var roommate in roommates)
+            {
+                var billSplit = new BillSplit();
+                billSplit.User = roommate;
+                billSplit.PortionCost = portion;
+                Splits.Add(billSplit);
+                
+            }
 
         }
         public override string ToString()
