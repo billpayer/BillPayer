@@ -27,7 +27,7 @@ namespace BillPayerCore.DataModels
         }
         public void MarkAsPaid()
         {
-
+            Paid = true;
         }
 
         public void SplitBill(List<User> roommates )
