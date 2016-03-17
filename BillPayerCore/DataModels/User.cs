@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CryptSharp;
 
 namespace BillPayerCore.DataModels
 {
@@ -40,10 +41,24 @@ namespace BillPayerCore.DataModels
             Sex = sex;
         }
 
-        public bool VerifyPassword(string passwordAttemp)
+        public bool StorePassword(string newPassword, string oldPassword)
         {
-            //salt, hash, check
+            if (Password != null && !VerifyPassword(oldPassword))
+            {
+                //something went wrong
+                return false;
+            }
+            string salt = Crypter.Blowfish.GenerateSalt();
+            Password = Crypter.Blowfish.Crypt(newPassword, salt);
             return true;
+        }
+
+        public bool VerifyPassword(string passwordAttempt)
+        {
+
+            return Crypter.CheckPassword(passwordAttempt, Password);
+            //salt, hash, check
+
         }
 
         public void ViewHouseHold(HouseHold household)

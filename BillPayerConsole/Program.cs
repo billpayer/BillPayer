@@ -21,13 +21,13 @@ namespace BillPayerConsole
              I am using a pseudo database for now.
             */
 
-            string[] texts = System.IO.File.ReadAllLines(@"C:\Users\joshua\Documents\GitHub\BillPayer\BillPayerConsole\Tests\test3.txt");
+            string[] texts = System.IO.File.ReadAllLines(@"..\..\Tests\test3.txt");
             string[] split_text;
             List<User> all_users = new List<User>();
             List<HouseHold> all_households = new List<HouseHold>();
             List<Bill> all_bills = new List<Bill>();
 
-            Console.WriteLine("Welcome to Bill Paying\n");
+            Console.WriteLine("Welcome to Bill Paying");
 
             /*
                 This will go through all the commands in text file and create what is asked with
