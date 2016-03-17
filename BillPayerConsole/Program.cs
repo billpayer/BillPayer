@@ -13,13 +13,13 @@ namespace BillPayerConsole
             //return;
 
             
-            ///<summary>
-            /// This can be used to test with a text document.
-            /// The valid commands and parameters will be posted for use
-            /// if anyone wants to try.
-            /// 
-            /// I am using a pseudo database for now.
-            /// </summary>
+            /*
+            This can be used to test with a text document.
+             The valid commands and parameters will be posted for use
+             if anyone wants to try.
+            
+             I am using a pseudo database for now.
+            */
 
             string[] texts = System.IO.File.ReadAllLines(@"C:\Users\joshua\Documents\GitHub\BillPayer\BillPayerConsole\Tests\test3.txt");
             string[] split_text;
