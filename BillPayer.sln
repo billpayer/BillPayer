@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPayerCore", "BillPayerC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPayerTest", "UnitTestProject1\BillPayerTest.csproj", "{A794E2CA-1BF1-4872-AECF-FF31D7F4DFCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPayingWebsite", "BillPayingWebsite\BillPayingWebsite.csproj", "{1FE98C0E-C117-444A-BC04-E80E1378A6FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillPayingWebsite.Tests", "BillPayingWebsite.Tests\BillPayingWebsite.Tests.csproj", "{9C46743F-7233-4E40-88F8-400D9CB46E1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{A794E2CA-1BF1-4872-AECF-FF31D7F4DFCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A794E2CA-1BF1-4872-AECF-FF31D7F4DFCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A794E2CA-1BF1-4872-AECF-FF31D7F4DFCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE98C0E-C117-444A-BC04-E80E1378A6FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FE98C0E-C117-444A-BC04-E80E1378A6FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FE98C0E-C117-444A-BC04-E80E1378A6FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FE98C0E-C117-444A-BC04-E80E1378A6FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C46743F-7233-4E40-88F8-400D9CB46E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C46743F-7233-4E40-88F8-400D9CB46E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C46743F-7233-4E40-88F8-400D9CB46E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C46743F-7233-4E40-88F8-400D9CB46E1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

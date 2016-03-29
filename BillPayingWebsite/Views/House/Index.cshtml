@@ -1,0 +1,22 @@
+﻿@using BillPayerCore.DataModels
+@model IEnumerable<HouseHold>
+@{
+    ViewBag.Title = "Houses";
+}
+
+
+@foreach (var house in Model)
+{
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+            House Id: @house.Id
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Details", "Details", new { id = house.Id })
+        </div>
+
+    </div>
+}
