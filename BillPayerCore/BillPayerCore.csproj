@@ -71,6 +71,10 @@
     <Compile Include="Migrations\201603290546392_application user.Designer.cs">
       <DependentUpon>201603290546392_application user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603291713206_Renamed Recurring.cs" />
+    <Compile Include="Migrations\201603291713206_Renamed Recurring.Designer.cs">
+      <DependentUpon>201603291713206_Renamed Recurring.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -81,6 +85,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603290546392_application user.resx">
       <DependentUpon>201603290546392_application user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603291713206_Renamed Recurring.resx">
+      <DependentUpon>201603291713206_Renamed Recurring.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

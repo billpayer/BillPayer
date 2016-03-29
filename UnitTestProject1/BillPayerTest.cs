@@ -26,7 +26,7 @@ namespace UnitTestProject1
             Assert.AreEqual(73, bill.Id);
             Assert.AreEqual("Rent", bill.Name);
             Assert.AreEqual(1700, bill.Cost);
-            Assert.AreEqual(true, bill.Recuring);
+            Assert.AreEqual(true, bill.Recurring);
         }
     }
 }
