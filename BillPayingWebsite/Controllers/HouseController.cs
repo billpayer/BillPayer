@@ -7,12 +7,28 @@ using System.Web.Mvc;
 using BillPayerCore.Data;
 using BillPayerCore.DataModels;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BillPayingWebsite.Controllers
 {
     public class HouseController : Controller
     {
         DataContext dbContext = new DataContext();
+
+        private ApplicationUserManager _userManager;
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         public ActionResult Index()
         {
@@ -36,6 +52,23 @@ namespace BillPayingWebsite.Controllers
             return View(household);
         }
 
+        public ActionResult Join(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == id);
+
+            if (household == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            return RedirectToAction("Details", new { id = household.Id });
+        }
+
         [Authorize]
         public ActionResult Create()
         {
@@ -50,6 +83,14 @@ namespace BillPayingWebsite.Controllers
             if (ModelState.IsValid)
             {
                 dbContext.HouseHolds.Add(model);
+
+                var userId = User.Identity.GetUserId();
+                var appUser = UserManager.Users.FirstOrDefault(x => x.Id == userId);
+                model.Roommates.Add(appUser.UserInfo);
+                dbContext.SaveChanges();
+                //model.AddRoommate(appUser.UserInfo);
+                model.HeadOfHouseHold = appUser.UserInfo;
+
                 dbContext.SaveChanges();
                 return RedirectToAction("Details", new {id = model.Id});
             }

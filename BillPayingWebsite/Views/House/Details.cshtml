@@ -38,3 +38,19 @@
     <div class="col-md-6">@Model.Size</div>
 
 </div>
+
+
+@foreach (var roommate in Model.Roommates)
+{
+    <div class="row">
+        <div class="col-md-3">Roomate:</div>
+        <div class="col-md-6">@roommate.FirstName @roommate.LastName</div>
+        @if (roommate == Model.HeadOfHouseHold)
+        {
+            <div class="col-md-3">Head of household</div>
+        }
+    </div>
+
+    
+}
+
