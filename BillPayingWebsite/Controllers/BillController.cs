@@ -136,5 +136,35 @@ namespace BillPayingWebsite.Controllers
             return View(model);
         }
 
+        [Authorize]
+        [HttpPost]
+        public ActionResult SplitBill(int? id, int? billId)//(BillViewModel model)
+        {
+            if (id == null || billId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == id);
+
+            if (household == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            var bill = household.Bills.FirstOrDefault(x => x.Id == billId.Value);
+
+            if (bill == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            bill.SplitBill(household.Roommates);
+            dbContext.SaveChanges();
+
+
+            return RedirectToAction("Details", new {id = household.Id, billId = bill.Id});
+        }
+
     }
 }
