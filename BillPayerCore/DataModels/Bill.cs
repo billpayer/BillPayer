@@ -16,8 +16,14 @@ namespace BillPayerCore.DataModels
         public bool Paid { get; set; }
         public List<BillSplit> Splits { get; set; }
 
+        public Bill()
+        {
+            Splits = new List<BillSplit>();
+        }
+
         public Bill(int id, string billName, decimal cost, bool recuring)
         {
+            Splits = new List<BillSplit>();
             Id = id;
             Name = billName;
             DateDue = DateTime.Now;

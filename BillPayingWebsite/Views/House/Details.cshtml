@@ -51,6 +51,22 @@
         }
     </div>
 
-    
+
+}
+
+<div class="row">
+    <div class="col-md-3">@Html.ActionLink("Add Bill", "Create", new {controller="Bill", id=Model.Id}, new {@class="btn btn-primary"})</div>
+
+</div>
+
+@foreach (var bill in Model.Bills)
+{
+    <div class="row">
+        <div class="col-md-3">Bill:</div>
+        <div class="col-md-6">@bill.Name $@bill.Cost</div>
+
+    </div>
+
+
 }
 
