@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace BillPayingWebsite.Controllers
 {
+    // siteurl/house/{action}
     public class HouseController : Controller
     {
         DataContext dbContext = new DataContext();
