@@ -185,6 +185,7 @@ namespace BillPayerConsole
                     else
                         Console.WriteLine("\nFailed: User could not request to join");
                 }
+                // View all of the HouseHold the User has Requested
                 if (split_text[0] == "user_view_all_requests")
                 {
                     bool found_user = false;

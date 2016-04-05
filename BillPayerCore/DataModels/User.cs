@@ -21,6 +21,10 @@ namespace BillPayerCore.DataModels
         public List<HouseHold> myRequests { get; set; }
         public List<HouseHold> LivingHouseholds { get; set; }
 
+        /*
+            Regular constructor initializing the LivingHouseholds,
+            myRequests, and myHouseholds
+        */
         public User()
         {
             LivingHouseholds = new List<HouseHold>();
@@ -28,6 +32,9 @@ namespace BillPayerCore.DataModels
             myHouseholds = new List<HouseHold>();
         }
 
+        /*
+            Constructor to load up all relevant information
+        */
         public User(int id, string first, string last, string email, string pass, string sex)
         {
             LivingHouseholds = new List<HouseHold>();
@@ -62,11 +69,18 @@ namespace BillPayerCore.DataModels
 
         }
 
+        /*
+            DESCRIPTION: This function views the household that is passed in.
+        */
         public void ViewHouseHold(HouseHold household)
         {
             Console.WriteLine(household.ToString());
         }
 
+        /*
+            DESCRIPTION: Creates a household with their ID, size, rooms, bathrooms,
+                            and address passed in
+        */
         public HouseHold CreateHousehold(int id, float size, int rooms, float baths, string address)
         {
             var newHousehold = new HouseHold(id, size, rooms, baths, address);
@@ -75,6 +89,10 @@ namespace BillPayerCore.DataModels
             return newHousehold;
         }
 
+        /*
+            DESCRIPTION: Views the all of myHouseholds. myHouseholds are the households
+                            that the user owns. If there is none, then it will say so.
+        */
         public void viewMyHousehold()
         {
             if (myHouseholds.Count == 0)
@@ -91,14 +109,28 @@ namespace BillPayerCore.DataModels
             }
         }
 
+        /*
+            DESCRIPTION: User request to join a HouseHold. The HouseHold will be added
+                            into myRequest, and the HouseHold will add the User to 
+                            their Requests. 
+            IMPORTANT: The User is passing themselves in this function to be added by HouseHold
+        */
         public void RequestToJoin(HouseHold household,User user)
         {
             myRequests.Add(household);
             household.AddRequest(user);
         }
 
+        /*
+            DESCRIPTION: User will view all of their HouseHolds from their 
+                            List myHouseholds
+        */
         public void ViewHouseholdRequests()
         {
+            if (myHouseholds.Count == 0)
+            {
+                Console.WriteLine("\tNo Houses");
+            }
 
             foreach(HouseHold house in myHouseholds)
             {
@@ -107,6 +139,13 @@ namespace BillPayerCore.DataModels
             }
         }
 
+        /*
+            DESCRIPTION: User will accept another User's request for the HouseHold
+                            if they own it. 
+            NOTES: A User owns a HouseHold if the HouseHold is stored in their 
+                    List myHouseholds. The User must be in that HouseHold's Request.
+                    The HouseHold will remove the Request afterward.
+        */
         public void AcceptRequest(User user, HouseHold household)
         {
             bool found_user = false;
@@ -142,6 +181,13 @@ namespace BillPayerCore.DataModels
             }
         }
 
+        /*
+            DESCRIPTION: The User declines another User from Household if he or she 
+                            owns the HouseHold
+            NOTES: A User owns a HouseHold if the HouseHold is stored in their 
+                    List myHouseholds. The User must be in that HouseHold's Request.
+                    The HouseHold will remove the Request afterward.
+        */
         public void DeclineRequest(User user, HouseHold household)
         {
             bool found_user = false;
