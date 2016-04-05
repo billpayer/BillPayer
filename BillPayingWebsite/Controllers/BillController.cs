@@ -76,7 +76,7 @@ namespace BillPayingWebsite.Controllers
             //    HouseHold = household
             //};
             //return View(model);
-            return View(household);
+            return View(bill);
         }
 
 
