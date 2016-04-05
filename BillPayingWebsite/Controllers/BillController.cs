@@ -44,7 +44,9 @@ namespace BillPayingWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            return View(household);
+            var billSplits = new List<BillSplit>();
+
+            return View(billSplits);
         }
 
         public ActionResult Details(int? id, int? billId)

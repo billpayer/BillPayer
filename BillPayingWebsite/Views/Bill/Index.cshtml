@@ -1,0 +1,15 @@
+﻿@model List<BillPayerCore.DataModels.BillSplit>
+@{
+    ViewBag.Title = "Bill";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+@foreach (var splits in Model)
+{
+    <div class="row">
+        <div class="col-md-3">House Id:</div>
+        <div class="col-md-6">@Model.Id</div>
+
+    </div>
+}
+
