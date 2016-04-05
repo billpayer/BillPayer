@@ -16,7 +16,7 @@ namespace BillPayerCore.Data
     public class ApplicationUser : IdentityUser
     {
 
-        public User UserInfo { get; set; }
+        public virtual User UserInfo { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

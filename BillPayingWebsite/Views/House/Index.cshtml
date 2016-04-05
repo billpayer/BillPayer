@@ -4,6 +4,7 @@
     ViewBag.Title = "Houses";
 }
 
+@Html.ActionLink("Create House", "Create")
 
 @foreach (var house in Model)
 {
@@ -16,6 +17,7 @@
         </div>
         <div class="col-md-4">
             @Html.ActionLink("Details", "Details", new { id = house.Id })
+            @Html.ActionLink("Join", "Join", new { id = house.Id })
         </div>
 
     </div>
