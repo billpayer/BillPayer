@@ -145,6 +145,9 @@ namespace BillPayerCore.DataModels
             NOTES: A User owns a HouseHold if the HouseHold is stored in their 
                     List myHouseholds. The User must be in that HouseHold's Request.
                     The HouseHold will remove the Request afterward.
+            
+            MARKED: Possibly try to delete the user's requested HouseHold inside this
+                    this function.
         */
         public void AcceptRequest(User user, HouseHold household)
         {
@@ -187,6 +190,9 @@ namespace BillPayerCore.DataModels
             NOTES: A User owns a HouseHold if the HouseHold is stored in their 
                     List myHouseholds. The User must be in that HouseHold's Request.
                     The HouseHold will remove the Request afterward.
+
+            MARKED: Possibly try to delete the user's requested HouseHold inside this
+                    this function.
         */
         public void DeclineRequest(User user, HouseHold household)
         {
