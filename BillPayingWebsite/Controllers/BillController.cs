@@ -127,11 +127,13 @@ namespace BillPayingWebsite.Controllers
                 bill.Cost = model.Cost;
                 bill.Name = model.Name;
                 bill.Paid = model.Paid;
+                bill.DateDue = model.DateDue;
+                bill.Recurring = model.Recurring;
 
                 household.AddBill(bill);
                 dbContext.SaveChanges();
 
-                dbContext.SaveChanges();
+               // dbContext.SaveChanges();
                 return RedirectToAction("Details", new {id = model.Id, billId=bill.Id});
             }
 
