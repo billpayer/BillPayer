@@ -31,6 +31,7 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
+        public void SplitBillTest()
         {
             Bill bill = new Bill(73, "Rent", 1200, true);
             
