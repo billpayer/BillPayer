@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BillPayerCore.Data;
@@ -31,9 +32,17 @@ namespace BillPayingWebsite.Controllers
             }
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(dbContext.HouseHolds.ToList());
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var houses = dbContext.HouseHolds.Where(x => x.Roommates.Any(r => r.Id == user.UserInfo.Id)).ToList();
+
+                return View(houses);
+            }
+
+            return View(new List<HouseHold>());
         }
 
         public ActionResult Details(int? id)
