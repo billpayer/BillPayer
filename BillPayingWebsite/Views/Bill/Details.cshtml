@@ -1,4 +1,4 @@
-﻿@model BillPayerCore.DataModels.Bill
+﻿@model BillPayingWebsite.Models.BillViewModel
 @{
     ViewBag.Title = "Bill";
 }
@@ -7,14 +7,14 @@
 
 <div class="row">
     <div class="col-md-3">Bill Id:</div>
-    <div class="col-md-6">@Model.Id</div>
+    <div class="col-md-6">@Model.Bill.Id</div>
 
 </div>
 
 <div class="row">
     <div class="col-md-3">Name:</div>
 
-    <div class="col-md-6">@Model.Name</div>
+    <div class="col-md-6">@Model.Bill.Name</div>
 
 
 </div>
@@ -22,26 +22,26 @@
 <div class="row">
     <div class="col-md-3">Date Due:</div>
 
-    <div class="col-md-6">@Model.DateDue</div>
+    <div class="col-md-6">@Model.Bill.DateDue</div>
 
 </div>
 
 <div class="row">
     <div class="col-md-3">Cost</div>
 
-    <div class="col-md-6">@Model.Cost</div>
+    <div class="col-md-6">@Model.Bill.Cost</div>
 
 </div>
 
 <div class="row">
     <div class="col-md-3">Recurring:</div>
-    <div class="col-md-6">@Model.Recurring</div>
+    <div class="col-md-6">@Model.Bill.Recurring</div>
 
 </div>
 
 <div class="row">
     <div class="col-md-3">Paid:</div>
-    <div class="col-md-6">@Model.Paid</div>
+    <div class="col-md-6">@Model.Bill.Paid</div>
 
 </div>
 
@@ -50,7 +50,7 @@
 
 </div>
 
-@foreach (var split in Model.Splits)
+@foreach (var split in Model.Bill.Splits)
 {
     <div class="row">
         <div class="col-md-3">Splits:</div>
@@ -63,6 +63,6 @@
 }
 
 <div class="row">
-    <div class="col-md-3">@Html.ActionLink("Split Bill", "SplitBill", new { controller = "Bill", id = Model.Id, billId = Model.Id }, new { @class = "btn btn-primary" })</div>
+    <div class="col-md-3">@Html.ActionLink("Split Bill", "SplitBill", new { controller = "Bill", id = Model.HouseHold.Id, billId = Model.Bill.Id }, new { @class = "btn btn-primary" })</div>
 
 </div>

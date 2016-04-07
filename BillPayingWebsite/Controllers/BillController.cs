@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using BillPayerCore.Data;
 using BillPayerCore.DataModels;
+using BillPayingWebsite.Models;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -70,13 +71,13 @@ namespace BillPayingWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            //var model = new BillViewModel()
-            //{
-            //    Bill = bill,
-            //    HouseHold = household
-            //};
-            //return View(model);
-            return View(bill);
+            var model = new BillViewModel()
+            {
+                Bill = bill,
+                HouseHold = household
+            };
+            return View(model);
+            //return View(bill);
         }
 
 
@@ -141,7 +142,6 @@ namespace BillPayingWebsite.Controllers
         }
 
         [Authorize]
-        [HttpPost]
         public ActionResult SplitBill(int? id, int? billId)//(BillViewModel model)
         {
             if (id == null || billId == null)
@@ -162,6 +162,8 @@ namespace BillPayingWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
+
+            //todo make sure theres not already splits
 
             bill.SplitBill(household.Roommates);
             dbContext.SaveChanges();

@@ -14,7 +14,7 @@ namespace BillPayerCore.DataModels
         public decimal Cost { get; set; }
         public bool Recurring { get; set; }
         public bool Paid { get; set; }
-        public List<BillSplit> Splits { get; set; }
+        public virtual List<BillSplit> Splits { get; set; }
 
         public Bill()
         {
@@ -38,6 +38,13 @@ namespace BillPayerCore.DataModels
 
         public void SplitBill(List<User> roommates )
         {
+            if (roommates.Count < 1)
+            {
+                throw new Exception("No roommates in household");
+            }
+
+            //todo make sure theres not already splits
+
             decimal portion = Cost/roommates.Count;
 
             foreach (var roommate in roommates)
