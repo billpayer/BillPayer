@@ -47,17 +47,22 @@
 
 <div class="row">
     <div class="col-md-3">Splits:</div>
-    <div class="col-md-6">@Model.Splits</div>
 
 </div>
 
-@*@foreach (var split in Model.Splits)
+@foreach (var split in Model.Splits)
 {
     <div class="row">
         <div class="col-md-3">Splits:</div>
-        <div class="col-md-6"> ******** </div>
-
+        <div class="col-md-6"> @split.Id </div>
+        <div class="col-md-6"> @split.PortionCost </div>
+        <div class="col-md-6"> @split.User </div>
     </div>
 
 
-}*@
+}
+
+<div class="row">
+    <div class="col-md-3">@Html.ActionLink("Split Bill", "SplitBill", new { controller = "Bill", id = Model.Id, billId = Model.Id }, new { @class = "btn btn-primary" })</div>
+
+</div>
