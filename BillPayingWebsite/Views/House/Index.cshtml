@@ -5,8 +5,10 @@
 }
 
 @Html.ActionLink("Create House", "Create", "House")
+@using (Html.BeginForm("Index", "House", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+foreach (var house in Model)
 
-@foreach (var house in Model)
 {
 
 
@@ -21,4 +23,8 @@
         </div>
 
     </div>
+    }
+
+    @Html.ActionLink("Join House", "JoinHouse", "House")
+
 }

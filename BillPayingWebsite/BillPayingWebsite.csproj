@@ -275,6 +275,7 @@
     <Content Include="Views\House\Details.cshtml" />
     <Content Include="Views\Bill\Details.cshtml" />
     <Content Include="Views\Bill\Create.cshtml" />
+    <Content Include="Views\House\JoinHouse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
