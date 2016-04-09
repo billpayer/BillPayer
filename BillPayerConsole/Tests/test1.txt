@@ -1,0 +1,9 @@
+﻿create_user 100 Vinh Vu vinhvu100@gmail.com 123password male
+create_user 101 Josh Cantero cante008@gmail.com password123 female
+view_all_users
+create_household 200 1000.32 3 2.5 123_random_street
+create_household 201 5000.67 10 6 123_expensive_street
+view_all_households
+create_bill 300 utility 300 true
+create_bill 301 rent 800 false
+view_all_bills
