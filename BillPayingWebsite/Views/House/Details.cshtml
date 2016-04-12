@@ -1,0 +1,73 @@
+﻿@model BillPayerCore.DataModels.HouseHold
+@{
+    ViewBag.Title = "House";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="row">
+    <div class="col-md-3">House Id:</div>
+    <div class="col-md-6">@Model.Id</div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">Address:</div>
+
+    <div class="col-md-6">@Model.Address</div>
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">Rooms:</div>
+
+    <div class="col-md-6">@Model.Rooms</div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">Bathrooms:</div>
+
+    <div class="col-md-6">@Model.Bathrooms</div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">Square Feet:</div>
+    <div class="col-md-6">@Model.Size</div>
+
+</div>
+
+
+@foreach (var roommate in Model.Roommates)
+{
+    <div class="row">
+        <div class="col-md-3">Roomate:</div>
+        <div class="col-md-6">@roommate.FirstName @roommate.LastName</div>
+        @if (roommate == Model.HeadOfHouseHold)
+        {
+            <div class="col-md-3">Head of household</div>
+        }
+    </div>
+
+
+}
+
+<div class="row">
+    <div class="col-md-3">@Html.ActionLink("Add Bill", "Create", new {controller="Bill", id=Model.Id}, new {@class="btn btn-primary"})</div>
+
+</div>
+
+@foreach (var bill in Model.Bills)
+{
+    <div class="row">
+        <div class="col-md-3">Bill:</div>
+        <div class="col-md-6">@bill.Name $@bill.Cost</div>
+        <div class="col-md-3">@Html.ActionLink("Details", "Details", new { controller = "Bill", id = Model.Id, billId = bill.Id }) </div>
+
+    </div>
+
+
+}
+

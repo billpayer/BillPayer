@@ -1,0 +1,61 @@
+﻿@model BillPayerCore.DataModels.Bill
+@{
+    ViewBag.Title = "Bill";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="row">
+    <div class="col-md-3">House Id:</div>
+    <div class="col-md-6">@Model.Id</div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">Name:</div>
+
+    <div class="col-md-6">@Model.Name</div>
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">Date Due:</div>
+
+    <div class="col-md-6">@Model.DateDue</div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">Cost</div>
+
+    <div class="col-md-6">@Model.Cost</div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">Recurring:</div>
+    <div class="col-md-6">@Model.Recurring</div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-3">Paid:</div>
+    <div class="col-md-6">@Model.Paid</div>
+
+</div>
+
+
+@foreach (var roommate in Model.Roommates)
+{
+    <div class="row">
+        <div class="col-md-3">Roomate:</div>
+        <div class="col-md-6">@roommate.FirstName @roommate.LastName</div>
+        @if (roommate == Model.HeadOfHouseHold)
+        {
+            <div class="col-md-3">Head of household</div>
+        }
+    </div>
+
+
+}

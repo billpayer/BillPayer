@@ -12,17 +12,23 @@ namespace BillPayerCore.DataModels
         public string Name { get; set; }
         public DateTime DateDue { get; set; }
         public decimal Cost { get; set; }
-        public bool Recuring { get; set; }
+        public bool Recurring { get; set; }
         public bool Paid { get; set; }
-        public List<BillSplit> Splits { get; set; }
+        public virtual List<BillSplit> Splits { get; set; }
 
-        public Bill(int id, string billName, decimal cost, bool recuring)
+        public Bill()
         {
+            Splits = new List<BillSplit>();
+        }
+
+        public Bill(int id, string billName, decimal cost, bool recurring)
+        {
+            Splits = new List<BillSplit>();
             Id = id;
             Name = billName;
             DateDue = DateTime.Now;
             Cost = cost;
-            Recuring = recuring;
+            Recurring = recurring;
             Paid = false;
         }
         public void MarkAsPaid()
@@ -32,6 +38,13 @@ namespace BillPayerCore.DataModels
 
         public void SplitBill(List<User> roommates )
         {
+            if (roommates.Count < 1)
+            {
+                throw new Exception("No roommates in household");
+            }
+
+            //todo make sure theres not already splits
+
             decimal portion = Cost/roommates.Count;
 
             foreach (var roommate in roommates)
@@ -46,7 +59,7 @@ namespace BillPayerCore.DataModels
         }
         public override string ToString()
         {
-            if (Recuring == false)
+            if (Recurring == false)
             {
                 return "ID : " + Id
                 + "\nName of bill: " + Name

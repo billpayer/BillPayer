@@ -17,10 +17,10 @@ namespace BillPayerCore.DataModels
         public int Rooms { get; set; }
         public float Bathrooms { get; set; }
         public string Address { get; set; }
-        public User HeadOfHouseHold { get; set; }
-        public List<Bill> Bills { get; set; }
-        public List<User> Roommates { get; set; }
-        public List<User> Requests { get; set; }
+        public virtual User HeadOfHouseHold { get; set; }
+        public virtual List<Bill> Bills { get; set; }
+        public virtual List<User> Roommates { get; set; }
+        public virtual List<User> Requests { get; set; }
 
         public HouseHold()
         {

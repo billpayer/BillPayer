@@ -20,7 +20,7 @@ namespace BillPayerConsole
             using (var db = new DataContext())
             {
 
-                user = db.Users.FirstOrDefault(u => u.Email != null && u.Email.Equals(email, StringComparison.InvariantCultureIgnoreCase));
+                user = db.UserInfos.FirstOrDefault(u => u.Email != null && u.Email.Equals(email, StringComparison.InvariantCultureIgnoreCase));
             }
 
             if (user == null)
@@ -42,7 +42,7 @@ namespace BillPayerConsole
                 using (var db = new DataContext())
                 {
 
-                    db.Users.Add(user);
+                    db.UserInfos.Add(user);
                     db.SaveChanges();
                 }
 

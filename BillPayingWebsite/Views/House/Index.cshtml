@@ -1,0 +1,31 @@
+﻿@using BillPayerCore.DataModels
+@model IEnumerable<HouseHold>
+@{
+    ViewBag.Title = "Houses";
+}
+
+@Html.ActionLink("Create House", "Create", "House")
+@using (Html.BeginForm("Index", "House", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+foreach (var house in Model)
+
+{
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+            House Id: @house.Id
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Details", "Details", new { id = house.Id })
+           
+          @Html.ActionLink("Join House", "JoinHouse", new { id = house.Id })
+        </div>
+
+    </div>
+    }
+
+   
+
+}
