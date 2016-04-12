@@ -176,6 +176,7 @@ namespace BillPayerCore.DataModels
             {
                 correct_household.AddRoommate(user);
                 correct_household.RemoveRequest(user);
+                user.myRequests.Remove(household);
             }
             else
             {
@@ -220,6 +221,7 @@ namespace BillPayerCore.DataModels
             if (correct_household != null)
             {
                 correct_household.RemoveRequest(user);
+                user.myRequests.Remove(household);
             }
             else
             {

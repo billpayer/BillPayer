@@ -244,7 +244,7 @@ namespace BillPayerConsole
                         Console.WriteLine("\nUser " + correct_user.Id + " accepts User " +
                                 correct_user2.Id + " into Household " + correct_household.Id);
                         correct_user.AcceptRequest(correct_user2, correct_household);
-                        correct_user2.myRequests.Remove(correct_household);
+                        //correct_user2.myRequests.Remove(correct_household);
                     }
                     else
                         Console.WriteLine("Failed: User cannot accept request");
@@ -286,7 +286,7 @@ namespace BillPayerConsole
                         Console.WriteLine("\nUser " + correct_user.Id + " accepts User " +
                                 correct_user2.Id + " into Household " + correct_household.Id);
                         correct_user.DeclineRequest(correct_user2, correct_household);
-                        correct_user2.myRequests.Remove(correct_household);
+                        //correct_user2.myRequests.Remove(correct_household);
                     }
                     else
                         Console.WriteLine("Failed: User cannot decline request");
