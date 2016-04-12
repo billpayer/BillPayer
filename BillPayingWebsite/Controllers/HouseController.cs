@@ -60,7 +60,8 @@ namespace BillPayingWebsite.Controllers
             return View(household);
         }
 
-        public ActionResult Join(int? id)
+        [Authorize]
+        public async Task<ActionResult> JoinHouse(int? id)
         {
             if (id == null)
             {
@@ -73,6 +74,12 @@ namespace BillPayingWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
+
+            //var userId = User.Identity.GetUserId();
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            household.AddRequest(user.UserInfo);
+            dbContext.SaveChanges();
 
             return RedirectToAction("Details", new { id = household.Id });
         }
