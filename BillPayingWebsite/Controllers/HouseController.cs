@@ -34,15 +34,13 @@ namespace BillPayingWebsite.Controllers
 
         public async Task<ActionResult> Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                var houses = dbContext.HouseHolds.Where(x => x.Roommates.Any(r => r.Id == user.UserInfo.Id)).ToList();
-
+            
+               // var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var houses = dbContext.HouseHolds.ToList();
                 return View(houses);
-            }
+            
 
-            return View(new List<HouseHold>());
+          
         }
 
         public ActionResult Details(int? id)
