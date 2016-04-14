@@ -68,29 +68,38 @@
 <div class="row">
     <div class="col-md-6">
 
-        <ul class="list-group">
-            <li class="list-group-item active">Bills</li>
+        <div class="list-group">
+            <div class="list-group-item active">Bills</div>
             @foreach (var bill in Model.Bills)
             {
-                <li class="list-group-item">
+                <a class="list-group-item" href="@Url.Action("Details", new { controller = "Bill", id = Model.Id, billId = bill.Id })">
                     @bill.Name $@bill.Cost
-                </li>
+                </a>
 
             }
-        </ul>
+        </div>
     </div>
 
 </div>
 
-@foreach (var bill in Model.Bills)
-{
-    <div class="row">
-        <div class="col-md-3">Bill:</div>
-        <div class="col-md-6">@bill.Name $@bill.Cost</div>
-        <div class="col-md-3">@Html.ActionLink("Details", "Details", new { controller = "Bill", id = Model.Id, billId = bill.Id }) </div>
 
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="list-group">
+            <div class="list-group-item active">Users Want to Join</div>
+            @foreach (var request in Model.Requests)
+            {
+                <div class="list-group-item" >
+                    @request.FirstName @request.LastName
+                    @Html.ActionLink("Accept","AcceptRoommate", new { controller = "House", id = Model.Id, billId = request.Id })
+                    @Html.ActionLink("Reject", "RejectRoommate", new { controller = "House", id = Model.Id, billId = request.Id })
+                </div>
+
+            }
+        </div>
     </div>
 
+</div>
 
-}
 
