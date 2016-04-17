@@ -29,3 +29,91 @@ foreach (var house in Model)
    
 
 }
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="row">
+    <div class="jumbotron">
+		<div class="container">
+			<h1>House/condos/appartmentts.</h1>
+		
+		</div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="..." alt="..." class="img-circle">
+      <div class="caption">
+        <h3>Houses</h3>
+        <p>Great sizes for all and enjoy bigger kitchens and bathrooms. Great for those who are just looking for a little bit of space for the right price.</p>
+        <p><a href="#" class="btn btn-primary" role="button">Search</a> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+body {
+	margin: 0;
+	background-image: url(.../img/background.jpg);
+	background-size: 1440px 800px;
+	background-repeat:no-repeat;
+
+	}
+
+
+	
+	
+	
+	
+	@using BillPayerCore.DataModels
+@model IEnumerable<HouseHold>
+@{
+    ViewBag.Title = "Houses";
+}
+
+@Html.ActionLink("Create House", "Create", "House")
+@using (Html.BeginForm("Index", "House", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+foreach (var house in Model)
+
+{
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+            House Id: @house.Id
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Details", "Details", new { id = house.Id })
+           
+          @Html.ActionLink("Join House", "JoinHouse", new { id = house.Id })
+        </div>
+
+    </div>
+    }
+
+   
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
