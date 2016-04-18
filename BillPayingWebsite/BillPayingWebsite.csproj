@@ -278,6 +278,7 @@
     <Content Include="Views\Bill\Details.cshtml" />
     <Content Include="Views\Bill\Create.cshtml" />
     <Content Include="Views\House\JoinHouse.cshtml" />
+    <Content Include="Views\Bill\RemoveOption.cshtml" />
     <Content Include="Views\Bill\Remove.cshtml" />
   </ItemGroup>
   <ItemGroup>

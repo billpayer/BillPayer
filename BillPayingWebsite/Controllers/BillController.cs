@@ -139,8 +139,48 @@ namespace BillPayingWebsite.Controllers
             return View(model);
         }
 
-        public ActionResult Remove(int? id)
+        public ActionResult RemoveOption(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == id);
+
+            if (household == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            return View(household);
+        }
+
+        [Authorize]
+        public ActionResult Remove(int? houseId, int? billId)
+        {
+            if (houseId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == houseId);
+
+            if (household == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            var bill = household.Bills.FirstOrDefault(x => x.Id == billId.Value);
+
+            if (bill == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            household.RemoveBill(bill);
+            dbContext.SaveChanges();
+
             return View();
         }
 
