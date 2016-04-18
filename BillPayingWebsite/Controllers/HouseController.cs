@@ -113,5 +113,51 @@ namespace BillPayingWebsite.Controllers
             return View(model);
         }
 
+        [Authorize]
+        // Return not working
+        public ActionResult AcceptRoommate(int? id, int requestId)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == id);
+
+            var userId = User.Identity.GetUserId();
+            var appUser = UserManager.Users.FirstOrDefault(x => x.UserInfo.Id == requestId);
+
+            if (household == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            if (appUser == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            household.AddRoommate(appUser.UserInfo);
+            household.RemoveRequest(appUser.UserInfo);
+
+            dbContext.SaveChanges();
+            return RedirectToAction("Details", new { id = household.Id });
+
+        }
+
+        [Authorize]
+        // Return not working
+        public ActionResult RejectRoommate(int? id, int requestId)
+        {
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == id);
+
+            var userId = User.Identity.GetUserId();
+            var appUser = UserManager.Users.FirstOrDefault(x => x.UserInfo.Id == requestId);
+
+            household.RemoveRequest(appUser.UserInfo);
+
+            dbContext.SaveChanges();
+            return RedirectToAction("Details", new { id = household.Id });
+        }
+
     }
 }

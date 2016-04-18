@@ -80,8 +80,6 @@ namespace BillPayingWebsite.Controllers
             //return View(bill);
         }
 
-
-
         [Authorize]
         public ActionResult Create(int? id)
         {
@@ -139,6 +137,11 @@ namespace BillPayingWebsite.Controllers
             }
 
             return View(model);
+        }
+
+        public ActionResult Remove(int? id)
+        {
+            return View();
         }
 
         [Authorize]

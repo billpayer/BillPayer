@@ -61,8 +61,8 @@
 
 
 <div class="row">
-    <div class="col-md-3">@Html.ActionLink("Add Bill", "Create", new { controller = "Bill", id = Model.Id }, new { @class = "btn btn-primary" })</div>
-
+    <div class="col-md-3">@Html.ActionLink("Add Bill", "Create", new { controller = "Bill", id = Model.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Remove Bill", "Remove", new { controller = "Bill", id = Model.Id }, new { @class = "btn btn-primary" }) </div>
 </div>
 
 <div class="row">
@@ -92,8 +92,8 @@
             {
                 <div class="list-group-item" >
                     @request.FirstName @request.LastName
-                    @Html.ActionLink("Accept","AcceptRoommate", new { controller = "House", id = Model.Id, billId = request.Id })
-                    @Html.ActionLink("Reject", "RejectRoommate", new { controller = "House", id = Model.Id, billId = request.Id })
+                    @Html.ActionLink("Accept","AcceptRoommate", new { controller = "House", id = Model.Id, requestId = request.Id })
+                    @Html.ActionLink("Reject", "RejectRoommate", new { controller = "House", id = Model.Id, requestId = request.Id })
                 </div>
 
             }
