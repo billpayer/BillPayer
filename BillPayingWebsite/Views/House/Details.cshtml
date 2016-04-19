@@ -91,7 +91,7 @@
             @foreach (var request in Model.Requests)
             {
                 <div class="list-group-item" >
-                    @request.FirstName @request.LastName
+                    @request.User.FirstName @request.User.LastName
                     @Html.ActionLink("Accept","AcceptRoommate", new { controller = "House", id = Model.Id, requestId = request.Id })
                     @Html.ActionLink("Reject", "RejectRoommate", new { controller = "House", id = Model.Id, requestId = request.Id })
                 </div>
