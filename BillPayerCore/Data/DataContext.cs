@@ -34,6 +34,7 @@ namespace BillPayerCore.Data
         public DbSet<HouseHold> HouseHolds { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<BillSplit> BillSplits { get; set; }
+        public DbSet<JoinRequest> JoinRequests { get; set; }
 
         public static DataContext Create()
         {

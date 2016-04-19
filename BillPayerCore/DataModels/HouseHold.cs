@@ -20,18 +20,18 @@ namespace BillPayerCore.DataModels
         public virtual User HeadOfHouseHold { get; set; }
         public virtual List<Bill> Bills { get; set; }
         public virtual List<User> Roommates { get; set; }
-        public virtual List<User> Requests { get; set; }
+        public virtual List<JoinRequest> Requests { get; set; }
 
         public HouseHold()
         {
-            Requests = new List<User>();
+            Requests = new List<JoinRequest>();
             Roommates = new List<User>();
             Bills = new List<Bill>();
         }
 
         public HouseHold(int id, float size, int rooms, float baths, string address)
         {
-            Requests = new List<User>();
+            Requests = new List<JoinRequest>();
             Roommates = new List<User>();
             Bills = new List<Bill>();
 
@@ -50,9 +50,10 @@ namespace BillPayerCore.DataModels
         {
             Roommates.Remove(user);
         }
-        public void AddRequest(User user)
+        public void AddRequest(JoinRequest request)
         {
-            Requests.Add(user);
+            
+            Requests.Add(request);
         }
         public void DeclineRequest(User user)
         {
@@ -70,16 +71,16 @@ namespace BillPayerCore.DataModels
         public void ViewRequests()
         {
             Console.WriteLine("\tID\tName");
-            foreach (User user in Requests)
+            foreach (var request in Requests)
             {
-                Console.WriteLine("\t" + user.Id + "\t" + user.FirstName +
-                        " " + user.LastName);
+                Console.WriteLine("\t" + request.User.Id + "\t" + request.User.FirstName +
+                        " " + request.User.LastName);
             }
         }
 
-        public void RemoveRequest(User user)
+        public void RemoveRequest(JoinRequest request)
         {
-            Requests.Remove(user);
+            Requests.Remove(request);
         }
 
         public void EditBill(Bill bill)

@@ -7,13 +7,13 @@ namespace BillPayerCore.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RenamedRecurring : IMigrationMetadata
+    public sealed partial class Allthedatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RenamedRecurring));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Allthedatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603291713206_Renamed Recurring"; }
+            get { return "201604191706275_All the database"; }
         }
         
         string IMigrationMetadata.Source
