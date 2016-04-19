@@ -40,34 +40,66 @@
 </div>
 
 
-@foreach (var roommate in Model.Roommates)
-{
-    <div class="row">
-        <div class="col-md-3">Roomate:</div>
-        <div class="col-md-6">@roommate.FirstName @roommate.LastName</div>
-        @if (roommate == Model.HeadOfHouseHold)
-        {
-            <div class="col-md-3">Head of household</div>
-        }
-    </div>
-
-
-}
 
 <div class="row">
-    <div class="col-md-3">@Html.ActionLink("Add Bill", "Create", new {controller="Bill", id=Model.Id}, new {@class="btn btn-primary"})</div>
+    <div class="col-md-6">
+        <ul class="list-group">
+            <li class="list-group-item active">Roommates</li>
+            @foreach (var roommate in Model.Roommates)
+            {
+                <li class="list-group-item">
+                    @roommate.FirstName @roommate.LastName
+                    <span class="badge"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
+                </li>
+
+            }
+        </ul>
+    </div>
 
 </div>
 
-@foreach (var bill in Model.Bills)
-{
-    <div class="row">
-        <div class="col-md-3">Bill:</div>
-        <div class="col-md-6">@bill.Name $@bill.Cost</div>
-        <div class="col-md-3">@Html.ActionLink("Details", "Details", new { controller = "Bill", id = Model.Id, billId = bill.Id }) </div>
 
+
+<div class="row">
+    <div class="col-md-3">@Html.ActionLink("Add Bill", "Create", new { controller = "Bill", id = Model.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Remove Bill", "RemoveOption", new { controller = "Bill", id = Model.Id }, new { @class = "btn btn-primary" }) </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="list-group">
+            <div class="list-group-item active">Bills</div>
+            @foreach (var bill in Model.Bills)
+            {
+                <a class="list-group-item" href="@Url.Action("Details", new { controller = "Bill", id = Model.Id, billId = bill.Id })">
+                    @bill.Name $@bill.Cost
+                </a>
+
+            }
+        </div>
     </div>
 
+</div>
 
-}
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="list-group">
+            <div class="list-group-item active">Users Want to Join</div>
+            @foreach (var request in Model.Requests)
+            {
+                <div class="list-group-item" >
+                    @request.FirstName @request.LastName
+                    @Html.ActionLink("Accept","AcceptRoommate", new { controller = "House", id = Model.Id, requestId = request.Id })
+                    @Html.ActionLink("Reject", "RejectRoommate", new { controller = "House", id = Model.Id, requestId = request.Id })
+                </div>
+
+            }
+        </div>
+    </div>
+
+</div>
+
 
