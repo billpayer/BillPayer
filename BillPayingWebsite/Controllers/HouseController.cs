@@ -99,7 +99,7 @@ namespace BillPayingWebsite.Controllers
                 dbContext.HouseHolds.Add(model);
 
                 var userId = User.Identity.GetUserId();
-                var appUser = UserManager.Users.FirstOrDefault(x => x.Id == userId);
+                var appUser = dbContext.Users.FirstOrDefault(x => x.Id == userId);
                 model.Roommates.Add(appUser.UserInfo);
                 dbContext.SaveChanges();
                 //model.AddRoommate(appUser.UserInfo);
