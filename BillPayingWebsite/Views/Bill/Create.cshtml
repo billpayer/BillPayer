@@ -14,6 +14,9 @@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
+    @Html.LabelFor(m => m.testString, new { @class = "col-md-2 control-label" })
+    @Html.TextBoxFor(m => m.testString, new { @class = "form-control" })
+
     <div class="form-group">
         @Html.LabelFor(m => m.Bill.Name, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -38,16 +41,22 @@
         <div class="form-group">
             @Html.LabelFor(m => m.HouseHold.Roommates, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @foreach (var roommate in Model.HouseHold.Roommates)
+                @for(int i=0; i< Model.RoommatesSelected.Count; i++)
                 {
 
 
                     <div class="checkbox">
-                        @Html.CheckBoxFor(m => m.RoommatesSelected[roommate.Id])
-                        @Html.Label(@roommate.FirstName + " " + @roommate.LastName)
+                        @Html.HiddenFor(m => m.RoommatesSelected[i].Id)
+                        @Html.CheckBoxFor(m => m.RoommatesSelected[i].isBilled)
+                        @Html.Label(@Model.RoommatesSelected[i].User.FirstName + " " + @Model.RoommatesSelected[i].User.LastName)
+                        
+
+
 
                     </div>
                 }
+
+
             </div>
         </div>
         <div class="form-group">

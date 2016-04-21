@@ -8,9 +8,10 @@ namespace BillPayingWebsite.Models
 {
     public class BillViewModel
     {
-        public Bill Bill { get; set; }
         public HouseHold HouseHold { get; set; }
-        public Dictionary<int, bool> RoommatesSelected;
+        public Bill Bill { get; set; }
+        public String testString { get; set; }
+        public List<BillRoommates> RoommatesSelected = new List<BillRoommates>();
 
     }
 }

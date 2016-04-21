@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModels\Bill.cs" />
+    <Compile Include="DataModels\BillRoommates.cs" />
     <Compile Include="DataModels\BillSplit.cs" />
     <Compile Include="DataModels\HouseHold.cs" />
     <Compile Include="DataModels\JoinRequest.cs" />
