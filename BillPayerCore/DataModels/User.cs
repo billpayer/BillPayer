@@ -17,19 +17,18 @@ namespace BillPayerCore.DataModels
         public string Email { get; set; }
         public string Password { get; set; }
         public string Sex { get; set; }
-        public List<HouseHold> myHouseholds { get; set; } 
-        public List<HouseHold> myRequests { get; set; }
-        public List<HouseHold> LivingHouseholds { get; set; }
+        public virtual List<HouseHold> MyHouseholds { get; set; } 
+        public virtual List<JoinRequest> MyRequests { get; set; }
+        public virtual List<BillSplit> BillSplits { get; set; }
 
         /*
             Regular constructor initializing the LivingHouseholds,
-            myRequests, and myHouseholds
+            myRequests, and MyHouseholds
         */
         public User()
         {
-            LivingHouseholds = new List<HouseHold>();
-            myRequests = new List<HouseHold>();
-            myHouseholds = new List<HouseHold>();
+            MyRequests = new List<JoinRequest>();
+            MyHouseholds = new List<HouseHold>();
         }
 
         /*
@@ -37,9 +36,8 @@ namespace BillPayerCore.DataModels
         */
         public User(int id, string first, string last, string email, string pass, string sex)
         {
-            LivingHouseholds = new List<HouseHold>();
-            myRequests = new List<HouseHold>();
-            myHouseholds = new List<HouseHold>();
+            MyRequests = new List<JoinRequest>();
+            MyHouseholds = new List<HouseHold>();
             Id = id;
             FirstName = first;
             LastName = last;
@@ -84,25 +82,25 @@ namespace BillPayerCore.DataModels
         public HouseHold CreateHousehold(int id, float size, int rooms, float baths, string address)
         {
             var newHousehold = new HouseHold(id, size, rooms, baths, address);
-            myHouseholds.Add(newHousehold);
+            MyHouseholds.Add(newHousehold);
 
             return newHousehold;
         }
 
         /*
-            DESCRIPTION: Views the all of myHouseholds. myHouseholds are the households
+            DESCRIPTION: Views the all of MyHouseholds. MyHouseholds are the households
                             that the user owns. If there is none, then it will say so.
         */
         public void viewMyHousehold()
         {
-            if (myHouseholds.Count == 0)
+            if (MyHouseholds.Count == 0)
             {
                 Console.WriteLine("\tNo households");
             }
             else
             {
                 Console.WriteLine("\tId\tAddress");
-                foreach (HouseHold house in myHouseholds)
+                foreach (HouseHold house in MyHouseholds)
                 {
                     Console.WriteLine("\t" + house.Id + "\t" + house.Address);
                 }
@@ -117,22 +115,27 @@ namespace BillPayerCore.DataModels
         */
         public void RequestToJoin(HouseHold household,User user)
         {
-            myRequests.Add(household);
-            household.AddRequest(user);
+            var request = new JoinRequest()
+            {
+                HouseHold = household,
+                User = user
+            };
+            MyRequests.Add(request);
+            household.AddRequest(request);
         }
 
         /*
             DESCRIPTION: User will view all of their HouseHolds from their 
-                            List myHouseholds
+                            List MyHouseholds
         */
         public void ViewHouseholdRequests()
         {
-            if (myHouseholds.Count == 0)
+            if (MyHouseholds.Count == 0)
             {
                 Console.WriteLine("\tNo Houses");
             }
 
-            foreach(HouseHold house in myHouseholds)
+            foreach(HouseHold house in MyHouseholds)
             {
                 Console.WriteLine("\tHouse " + house.Id);
                 house.ViewRequests();
@@ -143,7 +146,7 @@ namespace BillPayerCore.DataModels
             DESCRIPTION: User will accept another User's request for the HouseHold
                             if they own it. 
             NOTES: A User owns a HouseHold if the HouseHold is stored in their 
-                    List myHouseholds. The User must be in that HouseHold's Request.
+                    List MyHouseholds. The User must be in that HouseHold's Request.
                     The HouseHold will remove the Request afterward.
             
             MARKED: Possibly try to delete the user's requested HouseHold inside this
@@ -151,37 +154,17 @@ namespace BillPayerCore.DataModels
         */
         public void AcceptRequest(User user, HouseHold household)
         {
-            bool found_user = false;
-            HouseHold correct_household = null;
 
-            foreach (User u in household.Requests)
-                if (user == u)
-                {
-                    found_user = true;
-                }
 
-            if (found_user == false)
-            {
-                Console.WriteLine("User was not in request");
-                return;
-            }
+            var request = household.Requests.FirstOrDefault(x => x.User.Id == user.Id
+            && x.HouseHold.Id == household.Id);
 
-            foreach (HouseHold house in myHouseholds)
-                if (house == household)
-                {
-                    correct_household = house;
-                }
- 
-            if (correct_household != null)
+            if (request != null)
             {
-                correct_household.AddRoommate(user);
-                correct_household.RemoveRequest(user);
-                user.myRequests.Remove(household);
-            }
-            else
-            {
-                Console.WriteLine("Household not found");
-                return;
+                household.AddRoommate(user);
+                user.MyRequests.Remove(request);
+                household.RemoveRequest(request);
+
             }
         }
 
@@ -189,7 +172,7 @@ namespace BillPayerCore.DataModels
             DESCRIPTION: The User declines another User from Household if he or she 
                             owns the HouseHold
             NOTES: A User owns a HouseHold if the HouseHold is stored in their 
-                    List myHouseholds. The User must be in that HouseHold's Request.
+                    List MyHouseholds. The User must be in that HouseHold's Request.
                     The HouseHold will remove the Request afterward.
 
             MARKED: Possibly try to delete the user's requested HouseHold inside this
@@ -197,36 +180,14 @@ namespace BillPayerCore.DataModels
         */
         public void DeclineRequest(User user, HouseHold household)
         {
-            bool found_user = false;
-            HouseHold correct_household = null;
 
-            foreach (User u in household.Requests)
-                if (user == u)
-                {
-                    found_user = true;
-                }
+            var request = household.Requests.FirstOrDefault(x => x.User.Id == user.Id
+            && x.HouseHold.Id == household.Id);
 
-            if (found_user == false)
+            if (request != null)
             {
-                Console.WriteLine("User was not in request");
-                return;
-            }
-
-            foreach (HouseHold house in myHouseholds)
-                if (house == household)
-                {
-                    correct_household = house;
-                }
-
-            if (correct_household != null)
-            {
-                correct_household.RemoveRequest(user);
-                user.myRequests.Remove(household);
-            }
-            else
-            {
-                Console.WriteLine("Household not found");
-                return;
+                household.RemoveRequest(request);
+                user.MyRequests.Remove(request);
             }
 
         }

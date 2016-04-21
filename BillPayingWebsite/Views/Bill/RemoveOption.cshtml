@@ -1,0 +1,24 @@
+﻿@model BillPayerCore.DataModels.HouseHold
+@{
+    ViewBag.Title = "Remove";
+    ViewBag.Message = "Select Bill to remove";
+}
+
+<h2>@ViewBag.Title</h2>
+<h4>@ViewBag.Message</h4>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="list-group">
+            <div class="list-group-item active">Bills</div>
+            @foreach (var bill in Model.Bills)
+            {
+                <a class="list-group-item" href="@Url.Action("Remove", new { houseId = Model.Id, billId = bill.Id })">
+                    @bill.Name $@bill.Cost
+                </a>
+            }
+        </div>
+    </div>
+
+</div>

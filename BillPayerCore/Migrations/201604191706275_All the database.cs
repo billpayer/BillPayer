@@ -3,7 +3,7 @@ namespace BillPayerCore.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class applicationuser : DbMigration
+    public partial class Allthedatabase : DbMigration
     {
         public override void Up()
         {
@@ -15,7 +15,7 @@ namespace BillPayerCore.Migrations
                         Name = c.String(),
                         DateDue = c.DateTime(nullable: false),
                         Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Recuring = c.Boolean(nullable: false),
+                        Recurring = c.Boolean(nullable: false),
                         Paid = c.Boolean(nullable: false),
                         HouseHold_Id = c.Int(),
                     })
@@ -51,13 +51,10 @@ namespace BillPayerCore.Migrations
                         Password = c.String(),
                         Sex = c.String(),
                         HouseHold_Id = c.Int(),
-                        HouseHold_Id1 = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.HouseHolds", t => t.HouseHold_Id)
-                .ForeignKey("dbo.HouseHolds", t => t.HouseHold_Id1)
-                .Index(t => t.HouseHold_Id)
-                .Index(t => t.HouseHold_Id1);
+                .Index(t => t.HouseHold_Id);
             
             CreateTable(
                 "dbo.HouseHolds",
@@ -70,18 +67,26 @@ namespace BillPayerCore.Migrations
                         Address = c.String(),
                         HeadOfHouseHold_Id = c.Int(),
                         User_Id = c.Int(),
-                        User_Id1 = c.Int(),
-                        User_Id2 = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Users", t => t.HeadOfHouseHold_Id)
                 .ForeignKey("dbo.Users", t => t.User_Id)
-                .ForeignKey("dbo.Users", t => t.User_Id1)
-                .ForeignKey("dbo.Users", t => t.User_Id2)
                 .Index(t => t.HeadOfHouseHold_Id)
-                .Index(t => t.User_Id)
-                .Index(t => t.User_Id1)
-                .Index(t => t.User_Id2);
+                .Index(t => t.User_Id);
+            
+            CreateTable(
+                "dbo.JoinRequests",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        HouseHold_Id = c.Int(),
+                        User_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.HouseHolds", t => t.HouseHold_Id)
+                .ForeignKey("dbo.Users", t => t.User_Id)
+                .Index(t => t.HouseHold_Id)
+                .Index(t => t.User_Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -165,11 +170,10 @@ namespace BillPayerCore.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.BillSplits", "Bill_Id", "dbo.Bills");
             DropForeignKey("dbo.BillSplits", "User_Id", "dbo.Users");
-            DropForeignKey("dbo.HouseHolds", "User_Id2", "dbo.Users");
-            DropForeignKey("dbo.HouseHolds", "User_Id1", "dbo.Users");
             DropForeignKey("dbo.HouseHolds", "User_Id", "dbo.Users");
-            DropForeignKey("dbo.Users", "HouseHold_Id1", "dbo.HouseHolds");
             DropForeignKey("dbo.Users", "HouseHold_Id", "dbo.HouseHolds");
+            DropForeignKey("dbo.JoinRequests", "User_Id", "dbo.Users");
+            DropForeignKey("dbo.JoinRequests", "HouseHold_Id", "dbo.HouseHolds");
             DropForeignKey("dbo.HouseHolds", "HeadOfHouseHold_Id", "dbo.Users");
             DropForeignKey("dbo.Bills", "HouseHold_Id", "dbo.HouseHolds");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -179,11 +183,10 @@ namespace BillPayerCore.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.HouseHolds", new[] { "User_Id2" });
-            DropIndex("dbo.HouseHolds", new[] { "User_Id1" });
+            DropIndex("dbo.JoinRequests", new[] { "User_Id" });
+            DropIndex("dbo.JoinRequests", new[] { "HouseHold_Id" });
             DropIndex("dbo.HouseHolds", new[] { "User_Id" });
             DropIndex("dbo.HouseHolds", new[] { "HeadOfHouseHold_Id" });
-            DropIndex("dbo.Users", new[] { "HouseHold_Id1" });
             DropIndex("dbo.Users", new[] { "HouseHold_Id" });
             DropIndex("dbo.BillSplits", new[] { "Bill_Id" });
             DropIndex("dbo.BillSplits", new[] { "User_Id" });
@@ -193,6 +196,7 @@ namespace BillPayerCore.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.JoinRequests");
             DropTable("dbo.HouseHolds");
             DropTable("dbo.Users");
             DropTable("dbo.BillSplits");

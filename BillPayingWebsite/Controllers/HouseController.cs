@@ -77,8 +77,7 @@ namespace BillPayingWebsite.Controllers
 
             //var userId = User.Identity.GetUserId();
             var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-
-            household.AddRequest(user.UserInfo);
+            user.UserInfo.RequestToJoin(household, user.UserInfo);
             dbContext.SaveChanges();
 
             return RedirectToAction("Details", new { id = household.Id });
@@ -100,7 +99,7 @@ namespace BillPayingWebsite.Controllers
                 dbContext.HouseHolds.Add(model);
 
                 var userId = User.Identity.GetUserId();
-                var appUser = UserManager.Users.FirstOrDefault(x => x.Id == userId);
+                var appUser = dbContext.Users.FirstOrDefault(x => x.Id == userId);
                 model.Roommates.Add(appUser.UserInfo);
                 dbContext.SaveChanges();
                 //model.AddRoommate(appUser.UserInfo);
@@ -111,6 +110,66 @@ namespace BillPayingWebsite.Controllers
             }
 
             return View(model);
+        }
+
+        [Authorize]
+        // Return not working
+        public async Task<ActionResult> AcceptRoommate(int? id, int requestId)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == id);
+
+            var userId = User.Identity.GetUserId();
+            var currentUser = await UserManager.FindByIdAsync(userId);
+            //var appUser = UserManager.Users.FirstOrDefault(x => x.UserInfo.Id == requestId);
+
+            var request = dbContext.JoinRequests.FirstOrDefault(x => x.Id == requestId);
+
+            if (household == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            if (request == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            currentUser.UserInfo.AcceptRequest(request.User, request.HouseHold);
+
+
+            dbContext.SaveChanges();
+            return RedirectToAction("Details", new { id = household.Id });
+
+        }
+
+        [Authorize]
+        // Return not working
+        public async Task<ActionResult> RejectRoommate(int? id, int requestId)
+        {
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == id);
+
+            //var userId = User.Identity.GetUserId();
+            //var currentUser = await UserManager.FindByIdAsync(userId);
+
+            var request = dbContext.JoinRequests.FirstOrDefault(x => x.Id == requestId);
+
+            if (household == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            if (request == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            household.RemoveRequest(request);
+
+            dbContext.SaveChanges();
+            return RedirectToAction("Details", new { id = household.Id });
         }
 
     }

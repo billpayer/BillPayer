@@ -65,15 +65,12 @@
     <Compile Include="DataModels\Bill.cs" />
     <Compile Include="DataModels\BillSplit.cs" />
     <Compile Include="DataModels\HouseHold.cs" />
+    <Compile Include="DataModels\JoinRequest.cs" />
     <Compile Include="DataModels\User.cs" />
     <Compile Include="Data\DataContext.cs" />
-    <Compile Include="Migrations\201603290546392_application user.cs" />
-    <Compile Include="Migrations\201603290546392_application user.Designer.cs">
-      <DependentUpon>201603290546392_application user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603291713206_Renamed Recurring.cs" />
-    <Compile Include="Migrations\201603291713206_Renamed Recurring.Designer.cs">
-      <DependentUpon>201603291713206_Renamed Recurring.cs</DependentUpon>
+    <Compile Include="Migrations\201604191706275_All the database.cs" />
+    <Compile Include="Migrations\201604191706275_All the database.Designer.cs">
+      <DependentUpon>201604191706275_All the database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,11 +80,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603290546392_application user.resx">
-      <DependentUpon>201603290546392_application user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603291713206_Renamed Recurring.resx">
-      <DependentUpon>201603291713206_Renamed Recurring.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604191706275_All the database.resx">
+      <DependentUpon>201604191706275_All the database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
