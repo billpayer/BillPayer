@@ -75,8 +75,8 @@ namespace BillPayingWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            //var userId = User.Identity.GetUserId();
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var userId = User.Identity.GetUserId();
+            var user = dbContext.Users.FirstOrDefault(x => x.Id == userId);
             user.UserInfo.RequestToJoin(household, user.UserInfo);
             dbContext.SaveChanges();
 

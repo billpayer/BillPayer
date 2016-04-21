@@ -49,7 +49,10 @@
             {
                 <li class="list-group-item">
                     @roommate.FirstName @roommate.LastName
-                    <span class="badge"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
+                    @if (roommate.Id == Model.HeadOfHouseHold.Id)
+                    {
+                        <span class="badge"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
+                    }
                 </li>
 
             }
