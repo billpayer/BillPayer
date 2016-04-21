@@ -10,5 +10,7 @@ namespace BillPayingWebsite.Models
     {
         public Bill Bill { get; set; }
         public HouseHold HouseHold { get; set; }
+        public Dictionary<int, bool> RoommatesSelected;
+
     }
 }

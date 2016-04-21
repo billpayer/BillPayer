@@ -95,18 +95,27 @@ namespace BillPayingWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
+            var roommatesSelected = new Dictionary<int, bool>();
+            foreach (User roommate in household.Roommates)
+            {
+                roommatesSelected.Add(roommate.Id, false);
 
-            //var model = new BillViewModel()
             //{
             //    HouseHold = household
-            //};
-            //return View(model);
-            return View();
+            }
+
+
+            var model = new BillViewModel()
+            {
+                HouseHold = household,
+                RoommatesSelected = roommatesSelected
+        };
+            return View(model);
         }
 
         [Authorize]
         [HttpPost]
-        public ActionResult Create(int? id,Bill model)//(BillViewModel model)
+        public ActionResult Create(int? id, BillViewModel model)
         {
             if (id == null)
             {
@@ -123,17 +132,28 @@ namespace BillPayingWebsite.Controllers
             if (ModelState.IsValid)
             {
                 var bill = new Bill();
-                bill.Cost = model.Cost;
-                bill.Name = model.Name;
-                bill.Paid = model.Paid;
-                bill.DateDue = model.DateDue;
-                bill.Recurring = model.Recurring;
+                bill.Cost = model.Bill.Cost;
+                bill.Name = model.Bill.Name;
+                bill.Paid = model.Bill.Paid;
+                bill.DateDue = model.Bill.DateDue;
+                bill.Recurring = model.Bill.Recurring;
+
+                var billPayers = new List<User>();
+                foreach(int roommateID in model.RoommatesSelected.Keys)
+                {
+                    if(model.RoommatesSelected[roommateID] == true)
+                    {
+                        billPayers.Add(dbContext.UserInfos.FirstOrDefault(x => x.Id == roommateID));
+                    }
+                    
+                }
+                bill.SplitBill(billPayers);
 
                 household.AddBill(bill);
                 dbContext.SaveChanges();
 
                // dbContext.SaveChanges();
-                return RedirectToAction("Details", new {id = model.Id, billId=bill.Id});
+                return RedirectToAction("Details", new {id = household.Id, billId=bill.Id});
             }
 
             return View(model);
