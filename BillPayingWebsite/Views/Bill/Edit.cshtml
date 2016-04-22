@@ -31,7 +31,7 @@
 
         @Html.LabelFor(m => m.Bill.DateDue, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Bill.DateDue, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Bill.DateDue, new {@Value = @Model.Bill.DateDue.ToShortDateString(), @class = "form-control" })
         </div>
     </div>
 

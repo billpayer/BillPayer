@@ -30,7 +30,15 @@
 <div class="row">
     <div class="col-md-3">Date Due:</div>
 
-    <div class="col-md-6">@Model.Bill.DateDue</div>
+    @if (@Model.Bill.DateDue.Date >= @DateTime.Now.Date)
+    {
+        <div class="col-md-6">@Model.Bill.DateDue.ToShortDateString()</div>
+    }
+    else
+    {
+        <div class="col-md-6 text-danger">@Model.Bill.DateDue.ToShortDateString()</div>
+    }
+    
 
 </div>
 
