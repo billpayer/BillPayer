@@ -5,6 +5,10 @@
 }
 <h2>@ViewBag.Title.</h2>
 
+<div class="row">
+    @Html.ActionLink("Bill", "Details", new { controller = "Bill", id = Model.HouseHold.Id, billId = Model.Bill.Id })
+
+</div>
 
 @using (Html.BeginForm("Edit", "Bill", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -12,6 +16,7 @@
     @Html.AntiForgeryToken()
     <h4>Edit a Bill.</h4>
     <hr />
+    @Html.HiddenFor(m => m.Bill.Id)
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
 

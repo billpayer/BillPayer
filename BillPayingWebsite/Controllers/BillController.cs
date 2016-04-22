@@ -96,6 +96,15 @@ namespace BillPayingWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
+            var billToEdit = dbContext.Bills.FirstOrDefault(x => x.Id == billID);
+            List<User> usersOnBill = new List<User>();
+
+            for(int i=0; i<billToEdit.Splits.Count; i++)
+            {
+                usersOnBill.Add(billToEdit.Splits[i].User);
+            }
+
+
             var roommatesSelected = new List<BillRoommates>();
             int tempIndex = 0;
             foreach (User roommate in household.Roommates)
@@ -103,12 +112,12 @@ namespace BillPayingWebsite.Controllers
                 BillRoommates newBillRoommate = new BillRoommates();
                 newBillRoommate.Id = tempIndex++;
                 newBillRoommate.User = roommate;
-                newBillRoommate.isBilled = true;
+                newBillRoommate.isBilled = usersOnBill.Contains(roommate);
                 roommatesSelected.Add(newBillRoommate);
 
             }
 
-            var billToEdit = dbContext.Bills.FirstOrDefault(x => x.Id == billID);
+           
 
 
             var model = new BillViewModel()
@@ -119,6 +128,61 @@ namespace BillPayingWebsite.Controllers
             };
             return View(model);
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Edit(int? id, BillViewModel model)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == id);
+
+            if (household == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            //Store all the edited bill info into a new bill object 
+            var billToEdit = model.Bill;
+
+            if (ModelState.IsValid)
+            {
+                billToEdit.Cost = model.Bill.Cost;
+                billToEdit.Name = model.Bill.Name;
+                billToEdit.Paid = model.Bill.Paid;
+                billToEdit.DateDue = model.Bill.DateDue;
+                billToEdit.Recurring = model.Bill.Recurring;
+
+                var billPayers = new List<User>();
+                foreach (BillRoommates roommate in model.RoommatesSelected)
+                {
+                    if (model.RoommatesSelected.FirstOrDefault(x => x.User.Id == roommate.User.Id).isBilled == true)
+                    {
+                        billPayers.Add(dbContext.UserInfos.FirstOrDefault(x => x.Id == roommate.User.Id));
+                    }
+
+                }
+
+                billToEdit.SplitBill(billPayers);
+                
+
+
+                //try to save the bill??
+                var bill = household.Bills.FirstOrDefault(x => x.Id == model.Bill.Id);
+
+                bill = billToEdit;
+                dbContext.SaveChanges();
+
+                // dbContext.SaveChanges();
+                return RedirectToAction("Details", new { id = household.Id, billId = billToEdit.Id });
+            }
+
+            return View(model);
+        }
+
 
         [Authorize]
         public ActionResult Create(int? id)
