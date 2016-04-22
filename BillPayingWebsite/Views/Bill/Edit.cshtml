@@ -1,0 +1,88 @@
+﻿
+@model BillPayingWebsite.Models.BillViewModel
+@{
+    ViewBag.Title = "Bill";
+}
+<h2>@ViewBag.Title.</h2>
+
+
+@using (Html.BeginForm("Edit", "Bill", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+    @Html.AntiForgeryToken()
+    <h4>Edit a Bill.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Bill.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Bill.Name, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.Bill.DateDue, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Bill.DateDue, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Bill.Cost, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Bill.Cost, new { @class = "form-control" })
+        </div>
+    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.HouseHold.Roommates, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @for (int i = 0; i < Model.RoommatesSelected.Count; i++)
+                {
+
+
+                    <div class="checkbox">
+                        @Html.HiddenFor(m => m.RoommatesSelected[i].User.Id)
+                        @Html.CheckBoxFor(m => m.RoommatesSelected[i].isBilled)
+                        @Html.Label(@Model.RoommatesSelected[i].User.FirstName + " " + @Model.RoommatesSelected[i].User.LastName)
+
+
+
+
+                    </div>
+                }
+
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Options", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.CheckBoxFor(m => m.Bill.Recurring)
+                    @Html.LabelFor(m => m.Bill.Recurring)
+
+                </div>
+                <div class="checkbox">
+                    @Html.CheckBoxFor(m => m.Bill.Paid)
+                    @Html.LabelFor(m => m.Bill.Paid)
+
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Save Changes" />
+            </div>
+        </div>
+
+
+}

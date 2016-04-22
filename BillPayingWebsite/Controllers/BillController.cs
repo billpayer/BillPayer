@@ -82,6 +82,45 @@ namespace BillPayingWebsite.Controllers
         }
 
         [Authorize]
+        public ActionResult Edit(int? id, int billID)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var household = dbContext.HouseHolds.FirstOrDefault(x => x.Id == id);
+
+            if (household == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+
+            var roommatesSelected = new List<BillRoommates>();
+            int tempIndex = 0;
+            foreach (User roommate in household.Roommates)
+            {
+                BillRoommates newBillRoommate = new BillRoommates();
+                newBillRoommate.Id = tempIndex++;
+                newBillRoommate.User = roommate;
+                newBillRoommate.isBilled = true;
+                roommatesSelected.Add(newBillRoommate);
+
+            }
+
+            var billToEdit = dbContext.Bills.FirstOrDefault(x => x.Id == billID);
+
+
+            var model = new BillViewModel()
+            {
+                Bill = billToEdit,
+                HouseHold = household,
+                RoommatesSelected = roommatesSelected
+            };
+            return View(model);
+        }
+
+        [Authorize]
         public ActionResult Create(int? id)
         {
             if (id == null)

@@ -281,6 +281,7 @@
     <Content Include="Views\House\JoinHouse.cshtml" />
     <Content Include="Views\Bill\RemoveOption.cshtml" />
     <Content Include="Views\Bill\Remove.cshtml" />
+    <Content Include="Views\Bill\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
