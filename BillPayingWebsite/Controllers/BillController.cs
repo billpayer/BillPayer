@@ -10,6 +10,7 @@ using BillPayingWebsite.Models;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using System.Data.Entity;
 
 namespace BillPayingWebsite.Controllers
 {
@@ -144,9 +145,9 @@ namespace BillPayingWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-
+            var billToEdit = household.Bills.FirstOrDefault(x => x.Id == model.Bill.Id);
             //Store all the edited bill info into a new bill object 
-            var billToEdit = model.Bill;
+            //var billToEdit = model.Bill;
 
             if (ModelState.IsValid)
             {
@@ -171,10 +172,22 @@ namespace BillPayingWebsite.Controllers
 
 
                 //try to save the bill??
-                var bill = household.Bills.FirstOrDefault(x => x.Id == model.Bill.Id);
+                
 
-                bill = billToEdit;
+                
+
+
+              //  dbContext.Bills.Attach(bill);
+                dbContext.Entry(billToEdit).State = System.Data.Entity.EntityState.Modified;
+
+
+                dbContext.Bills.Attach(billToEdit);
+                dbContext.Entry(billToEdit).State = EntityState.Modified;
                 dbContext.SaveChanges();
+
+              //  bill = billToEdit;
+
+             //   dbContext.SaveChanges();
 
                 // dbContext.SaveChanges();
                 return RedirectToAction("Details", new { id = household.Id, billId = billToEdit.Id });
