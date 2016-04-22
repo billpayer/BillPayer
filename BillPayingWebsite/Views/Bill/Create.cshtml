@@ -13,9 +13,7 @@
     <h4>Create a new Bill.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-
-    @Html.LabelFor(m => m.testString, new { @class = "col-md-2 control-label" })
-    @Html.TextBoxFor(m => m.testString, new { @class = "form-control" })
+    
 
     <div class="form-group">
         @Html.LabelFor(m => m.Bill.Name, new { @class = "col-md-2 control-label" })
@@ -46,7 +44,7 @@
 
 
                     <div class="checkbox">
-                        @Html.HiddenFor(m => m.RoommatesSelected[i].Id)
+                        @Html.HiddenFor(m => m.RoommatesSelected[i].User.Id)
                         @Html.CheckBoxFor(m => m.RoommatesSelected[i].isBilled)
                         @Html.Label(@Model.RoommatesSelected[i].User.FirstName + " " + @Model.RoommatesSelected[i].User.LastName)
                         

@@ -54,23 +54,21 @@
 </div>
 
 <div class="row">
-    <div class="col-md-3">Splits:</div>
+    <div class="col-md-3">Roommates Billed:</div>
 
 </div>
 
 @foreach (var split in Model.Bill.Splits)
 {
     <div class="row">
-        <div class="col-md-3">Splits:</div>
-        <div class="col-md-6"> @split.Id </div>
-        <div class="col-md-6"> @split.PortionCost </div>
-        <div class="col-md-6"> @split.User </div>
+        <div class="col-md-3 col-md-offset-1"> @split.User.FirstName @split.User.LastName </div>
+        <div class="col-md-3 "> @split.PortionCost </div>   
     </div>
 
 
 }
 
 <div class="row">
-    <div class="col-md-3">@Html.ActionLink("Split Bill", "SplitBill", new { controller = "Bill", id = Model.HouseHold.Id, billId = Model.Bill.Id }, new { @class = "btn btn-primary" })</div>
+    <div class="col-md-3">@Html.ActionLink("Edit Bill", "ResplitBill", new { controller = "Bill", id = Model.HouseHold.Id, billId = Model.Bill.Id }, new { @class = "btn btn-primary" })</div>
 
 </div>

@@ -10,8 +10,7 @@ namespace BillPayingWebsite.Models
     {
         public HouseHold HouseHold { get; set; }
         public Bill Bill { get; set; }
-        public String testString { get; set; }
-        public List<BillRoommates> RoommatesSelected = new List<BillRoommates>();
+        public List<BillRoommates> RoommatesSelected { get; set; }
 
     }
 }
