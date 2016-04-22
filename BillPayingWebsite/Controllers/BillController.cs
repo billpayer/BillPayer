@@ -146,7 +146,7 @@ namespace BillPayingWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
             var billToEdit = household.Bills.FirstOrDefault(x => x.Id == model.Bill.Id);
-             household.Bills.Remove(billToEdit);
+             //household.Bills.Remove(billToEdit);
             //Store all the edited bill info into a new bill object 
             //var billToEdit = model.Bill;
 
@@ -170,7 +170,7 @@ namespace BillPayingWebsite.Controllers
                 }
 
                 billToEdit.SplitBill(billPayers);
-                household.Bills.Add(billToEdit);
+                //household.Bills.Add(billToEdit);
 
 
                 //try to save the bill??
