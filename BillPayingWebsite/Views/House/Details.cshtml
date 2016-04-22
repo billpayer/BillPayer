@@ -74,10 +74,22 @@
 
         <div class="list-group">
             <div class="list-group-item active">Bills</div>
-            @foreach (var bill in Model.HouseHold.Bills)
+            @foreach (var bill in Model.houseBillsSorted)
             {
                 <a class="list-group-item" href="@Url.Action("Details", new { controller = "Bill", id = Model.HouseHold.Id, billId = bill.Id })">
-                    @bill.Name $@bill.Cost
+                    @bill.Name $@bill.Cost 
+                    @if ((DateTime.Now.Date - bill.DateDue).Days > 1)
+                    {
+                        <span class="badge"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> @((DateTime.Now.Date - bill.DateDue).Days) Days Overdue!</span>
+                    }
+                    else if ((DateTime.Now.Date - bill.DateDue).Days > 0)
+                    {
+                        <span class="badge"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> @((DateTime.Now.Date - bill.DateDue).Days) Day Overdue!</span>
+                    }
+                    else if ((DateTime.Now.Date - bill.DateDue).Days == 0)
+                    {
+                        <span class="badge"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Due Today!</span>
+                    }
                 </a>
 
             }

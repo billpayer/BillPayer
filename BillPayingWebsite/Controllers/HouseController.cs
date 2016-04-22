@@ -84,6 +84,8 @@ namespace BillPayingWebsite.Controllers
 
             }
 
+            model.houseBillsSorted = household.Bills.OrderBy(b => b.DateDue).ToList();
+
             return View(model);
         }
 
