@@ -146,11 +146,13 @@ namespace BillPayingWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
             var billToEdit = household.Bills.FirstOrDefault(x => x.Id == model.Bill.Id);
+             household.Bills.Remove(billToEdit);
             //Store all the edited bill info into a new bill object 
             //var billToEdit = model.Bill;
 
             if (ModelState.IsValid)
             {
+                billToEdit.Splits = new List<BillSplit>();
                 billToEdit.Cost = model.Bill.Cost;
                 billToEdit.Name = model.Bill.Name;
                 billToEdit.Paid = model.Bill.Paid;
@@ -168,21 +170,21 @@ namespace BillPayingWebsite.Controllers
                 }
 
                 billToEdit.SplitBill(billPayers);
-                
+                household.Bills.Add(billToEdit);
 
 
                 //try to save the bill??
-                
-
-                
 
 
-              //  dbContext.Bills.Attach(bill);
-                dbContext.Entry(billToEdit).State = System.Data.Entity.EntityState.Modified;
 
 
-                dbContext.Bills.Attach(billToEdit);
-                dbContext.Entry(billToEdit).State = EntityState.Modified;
+
+                //  dbContext.Bills.Attach(bill);
+                //  dbContext.Entry(billToEdit).State = System.Data.Entity.EntityState.Modified;
+
+
+                //dbContext.Bills.Attach(billToEdit);
+                //  dbContext.Entry(billToEdit).State = EntityState.Modified;
                 dbContext.SaveChanges();
 
               //  bill = billToEdit;
