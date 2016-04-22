@@ -70,6 +70,7 @@ namespace BillPayingWebsite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
+            
 
             var model = new BillViewModel()
             {
@@ -95,13 +96,16 @@ namespace BillPayingWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            var roommatesSelected = new Dictionary<int, bool>();
+            var roommatesSelected = new List<BillRoommates>();
+            int tempIndex = 0;
             foreach (User roommate in household.Roommates)
             {
-                roommatesSelected.Add(roommate.Id, false);
+                BillRoommates newBillRoommate = new BillRoommates();
+                newBillRoommate.Id = tempIndex++;
+                newBillRoommate.User = roommate;
+                newBillRoommate.isBilled = true;
+                roommatesSelected.Add(newBillRoommate);
 
-            //{
-            //    HouseHold = household
             }
 
 
@@ -109,7 +113,7 @@ namespace BillPayingWebsite.Controllers
             {
                 HouseHold = household,
                 RoommatesSelected = roommatesSelected
-        };
+            };
             return View(model);
         }
 
@@ -139,11 +143,11 @@ namespace BillPayingWebsite.Controllers
                 bill.Recurring = model.Bill.Recurring;
 
                 var billPayers = new List<User>();
-                foreach(int roommateID in model.RoommatesSelected.Keys)
+                foreach(BillRoommates roommate in model.RoommatesSelected)
                 {
-                    if(model.RoommatesSelected[roommateID] == true)
+                    if(model.RoommatesSelected.FirstOrDefault(x => x.User.Id == roommate.User.Id).isBilled == true)
                     {
-                        billPayers.Add(dbContext.UserInfos.FirstOrDefault(x => x.Id == roommateID));
+                        billPayers.Add(dbContext.UserInfos.FirstOrDefault(x => x.Id == roommate.User.Id));
                     }
                     
                 }

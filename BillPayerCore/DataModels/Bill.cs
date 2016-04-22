@@ -57,6 +57,28 @@ namespace BillPayerCore.DataModels
             }
 
         }
+
+        public void DeleteBill(List<User> roommates)
+        {
+            if (roommates.Count < 1)
+            {
+                throw new Exception("No roommates in household");
+            }
+
+            //todo make sure theres not already splits
+
+            decimal portion = Cost / roommates.Count;
+
+            foreach (var roommate in roommates)
+            {
+                var billSplit = new BillSplit();
+                billSplit.User = roommate;
+                billSplit.PortionCost = portion;
+                Splits.Add(billSplit);
+
+            }
+
+        }
         public override string ToString()
         {
             if (Recurring == false)
