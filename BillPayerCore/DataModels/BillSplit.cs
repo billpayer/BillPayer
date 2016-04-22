@@ -11,5 +11,6 @@ namespace BillPayerCore.DataModels
         public int Id { get; set; }
         public decimal PortionCost { get; set; }
         public virtual User User { get; set; }
+        public virtual Bill Bill { get; set; }
     }
 }

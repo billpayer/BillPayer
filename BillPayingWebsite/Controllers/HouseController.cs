@@ -73,7 +73,8 @@ namespace BillPayingWebsite.Controllers
                 totalOwed = 0;
                 foreach (BillSplit bill in roommate.BillSplits)
                 {
-                    totalOwed += bill.PortionCost;
+                    if(household.Bills.Contains(bill.Bill))
+                        totalOwed += bill.PortionCost;
                 }
 
                 userOwe.User = roommate;
