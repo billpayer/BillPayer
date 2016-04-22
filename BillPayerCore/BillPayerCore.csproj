@@ -67,6 +67,7 @@
     <Compile Include="DataModels\BillSplit.cs" />
     <Compile Include="DataModels\HouseHold.cs" />
     <Compile Include="DataModels\JoinRequest.cs" />
+    <Compile Include="DataModels\RoommatesTotalOwed.cs" />
     <Compile Include="DataModels\User.cs" />
     <Compile Include="Data\DataContext.cs" />
     <Compile Include="Migrations\201604191706275_All the database.cs" />

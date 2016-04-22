@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using BillPayerCore.Data;
 using BillPayerCore.DataModels;
+using BillPayingWebsite.Models;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -57,7 +58,32 @@ namespace BillPayingWebsite.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            return View(household);
+
+
+            var model = new HouseHoldUserModel()
+            {
+                HouseHold = household
+            };
+
+            model.roommatesOwed = new List<RoommatesTotalOwed>();
+            decimal totalOwed = 0;
+            foreach(User roommate in household.Roommates)
+            {
+                RoommatesTotalOwed userOwe = new RoommatesTotalOwed();
+                totalOwed = 0;
+                foreach (BillSplit bill in roommate.BillSplits)
+                {
+                    totalOwed += bill.PortionCost;
+                }
+
+                userOwe.User = roommate;
+                userOwe.totalDue = totalOwed;
+                model.roommatesOwed.Add(userOwe);
+
+
+            }
+
+            return View(model);
         }
 
         [Authorize]

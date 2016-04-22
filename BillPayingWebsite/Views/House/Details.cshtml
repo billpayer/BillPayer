@@ -1,4 +1,4 @@
-﻿@model BillPayerCore.DataModels.HouseHold
+﻿@model BillPayingWebsite.Models.HouseHoldUserModel
 @{
     ViewBag.Title = "House";
 }
@@ -7,14 +7,14 @@
 
 <div class="row">
     <div class="col-md-3">House Id:</div>
-    <div class="col-md-6">@Model.Id</div>
+    <div class="col-md-6">@Model.HouseHold.Id</div>
 
 </div>
 
 <div class="row">
     <div class="col-md-3">Address:</div>
 
-    <div class="col-md-6">@Model.Address</div>
+    <div class="col-md-6">@Model.HouseHold.Address</div>
 
 
 </div>
@@ -22,20 +22,20 @@
 <div class="row">
     <div class="col-md-3">Rooms:</div>
 
-    <div class="col-md-6">@Model.Rooms</div>
+    <div class="col-md-6">@Model.HouseHold.Rooms</div>
 
 </div>
 
 <div class="row">
     <div class="col-md-3">Bathrooms:</div>
 
-    <div class="col-md-6">@Model.Bathrooms</div>
+    <div class="col-md-6">@Model.HouseHold.Bathrooms</div>
 
 </div>
 
 <div class="row">
     <div class="col-md-3">Square Feet:</div>
-    <div class="col-md-6">@Model.Size</div>
+    <div class="col-md-6">@Model.HouseHold.Size</div>
 
 </div>
 
@@ -45,11 +45,12 @@
     <div class="col-md-6">
         <ul class="list-group">
             <li class="list-group-item active">Roommates</li>
-            @foreach (var roommate in Model.Roommates)
+            @foreach (var roommate in Model.roommatesOwed)
             {
                 <li class="list-group-item">
-                    @roommate.FirstName @roommate.LastName
-                    @if (roommate.Id == Model.HeadOfHouseHold.Id)
+                    @roommate.User.FirstName @roommate.User.LastName
+                    <h class="text-danger">( $@roommate.totalDue )</h>
+                    @if (roommate.User.Id == Model.HouseHold.HeadOfHouseHold.Id)
                     {
                         <span class="badge"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></span>
                     }
@@ -64,8 +65,8 @@
 
 
 <div class="row">
-    <div class="col-md-3">@Html.ActionLink("Add Bill", "Create", new { controller = "Bill", id = Model.Id }, new { @class = "btn btn-primary" })
-    @Html.ActionLink("Remove Bill", "RemoveOption", new { controller = "Bill", id = Model.Id }, new { @class = "btn btn-primary" }) </div>
+    <div class="col-md-3">@Html.ActionLink("Add Bill", "Create", new { controller = "Bill", id = Model.HouseHold.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Remove Bill", "RemoveOption", new { controller = "Bill", id = Model.HouseHold.Id }, new { @class = "btn btn-primary" }) </div>
 </div>
 
 <div class="row">
@@ -73,9 +74,9 @@
 
         <div class="list-group">
             <div class="list-group-item active">Bills</div>
-            @foreach (var bill in Model.Bills)
+            @foreach (var bill in Model.HouseHold.Bills)
             {
-                <a class="list-group-item" href="@Url.Action("Details", new { controller = "Bill", id = Model.Id, billId = bill.Id })">
+                <a class="list-group-item" href="@Url.Action("Details", new { controller = "Bill", id = Model.HouseHold.Id, billId = bill.Id })">
                     @bill.Name $@bill.Cost
                 </a>
 
@@ -91,12 +92,12 @@
 
         <div class="list-group">
             <div class="list-group-item active">Users Want to Join</div>
-            @foreach (var request in Model.Requests)
+            @foreach (var request in Model.HouseHold.Requests)
             {
                 <div class="list-group-item" >
                     @request.User.FirstName @request.User.LastName
-                    @Html.ActionLink("Accept","AcceptRoommate", new { controller = "House", id = Model.Id, requestId = request.Id })
-                    @Html.ActionLink("Reject", "RejectRoommate", new { controller = "House", id = Model.Id, requestId = request.Id })
+                    @Html.ActionLink("Accept","AcceptRoommate", new { controller = "House", id = Model.HouseHold.Id, requestId = request.Id })
+                    @Html.ActionLink("Reject", "RejectRoommate", new { controller = "House", id = Model.HouseHold.Id, requestId = request.Id })
                 </div>
 
             }
