@@ -1,0 +1,35 @@
+﻿@using BillPayerCore.DataModels
+
+@model IEnumerable<BillPayerCore.Data.ApplicationUser>
+@{
+    ViewBag.Title = "User";
+}
+
+@*@Html.ActionLink("Create House", "Create", "House")*@
+@using (Html.BeginForm("Index", "Roommates", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+{
+    foreach (var User in Model)
+    {
+
+        <div class="row">
+            <div class="col-md-4">
+                @*User Id: @User.Id*@
+                Super Secret Agent: @User.UserInfo.FirstName @User.UserInfo.LastName
+            </div>
+            <div class="col-md-4">
+                @*@Html.ActionLink("Details", "Details", new {id = User.Id})*@
+
+               @* @Html.ActionLink("Join House", "JoinHouse", new {id = house.Id})*@
+            </div>
+
+        </div>
+    }
+
+
+
+
+}
+
+	
+	
+	

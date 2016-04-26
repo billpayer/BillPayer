@@ -33,6 +33,7 @@ namespace BillPayingWebsite.Controllers
             }
         }
 
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             
