@@ -1,4 +1,5 @@
 ﻿using BillPayerCore.Data;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -42,5 +43,38 @@ namespace BillPayingWebsite.Controllers
             return View(roommates);
         }
 
+
+
+        [Authorize]
+        public async Task<ActionResult> Profile()
+        {
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            return View(user.UserInfo);
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Details(ApplicationUser model)
+        {
+            /*
+            if (ModelState.IsValid)
+            {
+                dbContext.HouseHolds.Add(model);
+
+                var userId = User.Identity.GetUserId();
+                var appUser = dbContext.Users.FirstOrDefault(x => x.Id == userId);
+                model.Roommates.Add(appUser.UserInfo);
+                dbContext.SaveChanges();
+                //model.AddRoommate(appUser.UserInfo);
+                model.HeadOfHouseHold = appUser.UserInfo;
+
+                dbContext.SaveChanges();
+                return RedirectToAction("Details", new { id = model.Id });
+            }
+            */
+            return View(model);
+        }
     }
 }
