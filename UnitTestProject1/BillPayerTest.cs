@@ -11,12 +11,11 @@ namespace UnitTestProject1
         [TestMethod]
         public void UserTest1()
         {
-            User user = new User(100, "Matthew", "Williams", "matthewfoucher@gmail.com", "Password1", "Male");
+            User user = new User(100, "Matthew", "Williams", "Male");
             Assert.AreEqual("Matthew", user.FirstName);
             Assert.AreEqual("Williams", user.LastName);
             Assert.AreEqual(100, user.Id);
-            Assert.AreEqual("matthewfoucher@gmail.com", user.Email);
-            Assert.AreEqual("Password1", user.Password);
+
             Assert.AreEqual("Male", user.Sex);
         }
 

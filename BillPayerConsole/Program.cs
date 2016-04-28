@@ -45,8 +45,7 @@ namespace BillPayerConsole
                 if (split_text[0] == "create_user")
                 {
                     var user = new User(int.Parse(split_text[1]), split_text[2],
-                                        split_text[3], split_text[4],
-                                        split_text[5], split_text[6]);
+                                        split_text[3], split_text[6]);
                     Console.WriteLine("User Created:\t\t" + user.Id + "\t" +
                                     user.FirstName + " " + user.LastName);
                     all_users.Add(user);

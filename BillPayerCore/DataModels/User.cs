@@ -14,8 +14,6 @@ namespace BillPayerCore.DataModels
         public string LastName { get; set; }
         public DateTime? Birthday { get; set; }
         public int Age { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
         public string Sex { get; set; }
         public virtual List<HouseHold> Households { get; set; } 
         public virtual List<JoinRequest> MyRequests { get; set; }
@@ -34,38 +32,16 @@ namespace BillPayerCore.DataModels
         /*
             Constructor to load up all relevant information
         */
-        public User(int id, string first, string last, string email, string pass, string sex)
+        public User(int id, string first, string last, string sex)
         {
             MyRequests = new List<JoinRequest>();
             Households = new List<HouseHold>();
             Id = id;
             FirstName = first;
             LastName = last;
-            Email = email;
-            Password = pass;
             Sex = sex;
         }
 
-        public bool StorePassword(string newPassword, string oldPassword)
-        {
-            if (Password != null && !VerifyPassword(oldPassword))
-            {
-                //something went wrong
-                return false;
-            }
-            string salt = Crypter.Blowfish.GenerateSalt();
-            Password = Crypter.Blowfish.Crypt(newPassword, salt);
-            return true;
-        }
-
-        //make sure it is the right user
-        public bool VerifyPassword(string passwordAttempt)
-        {
-
-            return Crypter.CheckPassword(passwordAttempt, Password);
-            //salt, hash, check
-
-        }
 
         /*
             DESCRIPTION: This function views the household that is passed in.
@@ -211,8 +187,6 @@ namespace BillPayerCore.DataModels
         {
             return "ID: " + Id +
                     "\nName: " + FirstName + LastName +
-                    "\nEmail: " + Email +
-                    "\nPassword: " + Password +
                     "\nSex: " + Sex;
         }
     }
