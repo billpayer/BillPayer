@@ -19,20 +19,20 @@ namespace BillPayerCore.DataModels
         public string Address { get; set; }
         public virtual User HeadOfHouseHold { get; set; }
         public virtual List<Bill> Bills { get; set; }
-        public virtual List<User> Roommates { get; set; }
+        public virtual List<User> Users { get; set; }
         public virtual List<JoinRequest> Requests { get; set; }
 
         public HouseHold()
         {
             Requests = new List<JoinRequest>();
-            Roommates = new List<User>();
+            Users = new List<User>();
             Bills = new List<Bill>();
         }
 
         public HouseHold(int id, float size, int rooms, float baths, string address)
         {
             Requests = new List<JoinRequest>();
-            Roommates = new List<User>();
+            Users = new List<User>();
             Bills = new List<Bill>();
 
             Id = id;
@@ -43,12 +43,12 @@ namespace BillPayerCore.DataModels
         }
         public void AddRoommate(User user)
         {
-            Roommates.Add(user);
+            Users.Add(user);
         }
 
         public void RemoveRoommate(User user)
         {
-            Roommates.Remove(user);
+            Users.Remove(user);
         }
         public void AddRequest(JoinRequest request)
         {
@@ -90,13 +90,13 @@ namespace BillPayerCore.DataModels
         public void ViewResidents()
         {
             Console.WriteLine("Residents of this household: ");
-            if (Roommates.Count == 0)
+            if (Users.Count == 0)
             {
                 Console.WriteLine("None");
                 return;
             }
 
-            foreach (User roommate in Roommates)
+            foreach (User roommate in Users)
             {
                 Console.WriteLine("\t" + roommate.FirstName + " " + roommate.LastName);
             }

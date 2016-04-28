@@ -68,7 +68,7 @@ namespace BillPayingWebsite.Controllers
 
             model.roommatesOwed = new List<RoommatesTotalOwed>();
             decimal totalOwed = 0;
-            foreach(User roommate in household.Roommates)
+            foreach(User roommate in household.Users)
             {
                 RoommatesTotalOwed userOwe = new RoommatesTotalOwed();
                 totalOwed = 0;
@@ -130,7 +130,7 @@ namespace BillPayingWebsite.Controllers
 
                 var userId = User.Identity.GetUserId();
                 var appUser = dbContext.Users.FirstOrDefault(x => x.Id == userId);
-                model.Roommates.Add(appUser.UserInfo);
+                model.Users.Add(appUser.UserInfo);
                 dbContext.SaveChanges();
                 //model.AddRoommate(appUser.UserInfo);
                 model.HeadOfHouseHold = appUser.UserInfo;

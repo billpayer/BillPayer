@@ -42,16 +42,16 @@
         </div>
     </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.HouseHold.Roommates, new { @class = "col-md-2 control-label" })
+            @Html.LabelFor(m => m.HouseHold.Users, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @for (int i = 0; i < Model.RoommatesSelected.Count; i++)
+                @for (int i = 0; i < Model.UsersSelected.Count; i++)
                 {
 
 
                     <div class="checkbox">
-                        @Html.HiddenFor(m => m.RoommatesSelected[i].User.Id)
-                        @Html.CheckBoxFor(m => m.RoommatesSelected[i].isBilled)
-                        @Html.Label(@Model.RoommatesSelected[i].User.FirstName + " " + @Model.RoommatesSelected[i].User.LastName)
+                        @Html.HiddenFor(m => m.UsersSelected[i].User.Id)
+                        @Html.CheckBoxFor(m => m.UsersSelected[i].isBilled)
+                        @Html.Label(@Model.UsersSelected[i].User.FirstName + " " + @Model.UsersSelected[i].User.LastName)
 
 
 

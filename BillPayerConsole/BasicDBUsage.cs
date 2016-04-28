@@ -69,7 +69,7 @@ namespace BillPayerConsole
 
             var household = new HouseHold(101, sqfoot, rooms, bath, address);
             Console.WriteLine(household.ToString());
-            household.Roommates.Add(user);
+            household.Users.Add(user);
             household.HeadOfHouseHold = user;
 
             Console.Write("Give name to bill: ");

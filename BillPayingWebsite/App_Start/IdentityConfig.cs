@@ -33,13 +33,13 @@ namespace BillPayingWebsite
             var myMessage = new SendGridMessage();
             myMessage.AddTo(message.Destination);
             myMessage.From = new System.Net.Mail.MailAddress(
-                                "Joe@contoso.com", "Joe S.");
+                                "perez240@cougars.csusm.com", "Roommate Splits");
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;
 
 
-            var transportWeb = new SendGrid.Web("SENDGRID_APIKEY");
+            var transportWeb = new SendGrid.Web(ConfigurationManager.AppSettings["mailkey"]);
             return transportWeb.DeliverAsync(myMessage);
 
 

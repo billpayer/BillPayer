@@ -295,7 +295,7 @@ namespace BillPayerConsole
                 /*---------------------------------------------------------------------
                     All these commands for Household
                 ---------------------------------------------------------------------*/
-                // Creates household object with Id, Rooms, Bathrooms, Roommates
+                // Creates household object with Id, Rooms, Bathrooms, Users
                 // Format: create_household <Id> <Size> <Rooms> <Bathrooms> <Address>
                 if (split_text[0] == "create_household")
                 {

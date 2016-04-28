@@ -17,18 +17,18 @@ namespace BillPayerCore.DataModels
         public string Email { get; set; }
         public string Password { get; set; }
         public string Sex { get; set; }
-        public virtual List<HouseHold> MyHouseholds { get; set; } 
+        public virtual List<HouseHold> Households { get; set; } 
         public virtual List<JoinRequest> MyRequests { get; set; }
         public virtual List<BillSplit> BillSplits { get; set; }
 
         /*
             Regular constructor initializing the LivingHouseholds,
-            myRequests, and MyHouseholds
+            myRequests, and Households
         */
         public User()
         {
             MyRequests = new List<JoinRequest>();
-            MyHouseholds = new List<HouseHold>();
+            Households = new List<HouseHold>();
         }
 
         /*
@@ -37,7 +37,7 @@ namespace BillPayerCore.DataModels
         public User(int id, string first, string last, string email, string pass, string sex)
         {
             MyRequests = new List<JoinRequest>();
-            MyHouseholds = new List<HouseHold>();
+            Households = new List<HouseHold>();
             Id = id;
             FirstName = first;
             LastName = last;
@@ -82,25 +82,25 @@ namespace BillPayerCore.DataModels
         public HouseHold CreateHousehold(int id, float size, int rooms, float baths, string address)
         {
             var newHousehold = new HouseHold(id, size, rooms, baths, address);
-            MyHouseholds.Add(newHousehold);
+            Households.Add(newHousehold);
 
             return newHousehold;
         }
 
         /*
-            DESCRIPTION: Views the all of MyHouseholds. MyHouseholds are the households
+            DESCRIPTION: Views the all of Households. Households are the households
                             that the user owns. If there is none, then it will say so.
         */
         public void viewMyHousehold()
         {
-            if (MyHouseholds.Count == 0)
+            if (Households.Count == 0)
             {
                 Console.WriteLine("\tNo households");
             }
             else
             {
                 Console.WriteLine("\tId\tAddress");
-                foreach (HouseHold house in MyHouseholds)
+                foreach (HouseHold house in Households)
                 {
                     Console.WriteLine("\t" + house.Id + "\t" + house.Address);
                 }
@@ -126,16 +126,16 @@ namespace BillPayerCore.DataModels
 
         /*
             DESCRIPTION: User will view all of their HouseHolds from their 
-                            List MyHouseholds
+                            List Households
         */
         public void ViewHouseholdRequests()
         {
-            if (MyHouseholds.Count == 0)
+            if (Households.Count == 0)
             {
                 Console.WriteLine("\tNo Houses");
             }
 
-            foreach(HouseHold house in MyHouseholds)
+            foreach(HouseHold house in Households)
             {
                 Console.WriteLine("\tHouse " + house.Id);
                 house.ViewRequests();
@@ -146,7 +146,7 @@ namespace BillPayerCore.DataModels
             DESCRIPTION: User will accept another User's request for the HouseHold
                             if they own it. 
             NOTES: A User owns a HouseHold if the HouseHold is stored in their 
-                    List MyHouseholds. The User must be in that HouseHold's Request.
+                    List Households. The User must be in that HouseHold's Request.
                     The HouseHold will remove the Request afterward.
             
             MARKED: Possibly try to delete the user's requested HouseHold inside this
@@ -172,7 +172,7 @@ namespace BillPayerCore.DataModels
             DESCRIPTION: The User declines another User from Household if he or she 
                             owns the HouseHold
             NOTES: A User owns a HouseHold if the HouseHold is stored in their 
-                    List MyHouseholds. The User must be in that HouseHold's Request.
+                    List Households. The User must be in that HouseHold's Request.
                     The HouseHold will remove the Request afterward.
 
             MARKED: Possibly try to delete the user's requested HouseHold inside this

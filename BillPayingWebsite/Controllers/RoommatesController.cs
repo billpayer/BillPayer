@@ -31,7 +31,7 @@ namespace BillPayingWebsite.Controllers
 
 
 
-        // GET: Roommates
+        // GET: Users
 
         [Authorize]
         public async Task<ActionResult> Index()

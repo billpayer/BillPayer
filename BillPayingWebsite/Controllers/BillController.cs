@@ -108,7 +108,7 @@ namespace BillPayingWebsite.Controllers
 
             var roommatesSelected = new List<BillRoommates>();
             int tempIndex = 0;
-            foreach (User roommate in household.Roommates)
+            foreach (User roommate in household.Users)
             {
                 BillRoommates newBillRoommate = new BillRoommates();
                 newBillRoommate.Id = tempIndex++;
@@ -195,7 +195,7 @@ namespace BillPayingWebsite.Controllers
 
             var roommatesSelected = new List<BillRoommates>();
             int tempIndex = 0;
-            foreach (User roommate in household.Roommates)
+            foreach (User roommate in household.Users)
             {
                 BillRoommates newBillRoommate = new BillRoommates();
                 newBillRoommate.Id = tempIndex++;
@@ -329,7 +329,7 @@ namespace BillPayingWebsite.Controllers
 
             //todo make sure theres not already splits
 
-            bill.SplitBill(household.Roommates);
+            bill.SplitBill(household.Users);
             dbContext.SaveChanges();
 
 

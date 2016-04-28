@@ -6,7 +6,7 @@
 }
 
 @*@Html.ActionLink("Create House", "Create", "House")*@
-@using (Html.BeginForm("Index", "Roommates", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+@using (Html.BeginForm("Index", "Users", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
 {
     foreach (var User in Model)
     {
