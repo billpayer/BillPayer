@@ -54,6 +54,29 @@ namespace BillPayingWebsite.Controllers
         }
 
 
+      
+        public ActionResult Edit(ApplicationUser model)
+        {
+            /*
+            if (ModelState.IsValid)
+            {
+                dbContext.HouseHolds.Add(model);
+
+                var userId = User.Identity.GetUserId();
+                var appUser = dbContext.Users.FirstOrDefault(x => x.Id == userId);
+                model.Roommates.Add(appUser.UserInfo);
+                dbContext.SaveChanges();
+                //model.AddRoommate(appUser.UserInfo);
+                model.HeadOfHouseHold = appUser.UserInfo;
+
+                dbContext.SaveChanges();
+                return RedirectToAction("Details", new { id = model.Id });
+            }
+            */
+            return View(model);
+        }
+
+
         [Authorize]
         [HttpPost]
         public ActionResult Details(ApplicationUser model)
