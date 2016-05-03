@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201604191706275_All the database.Designer.cs">
       <DependentUpon>201604191706275_All the database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605031606443_Removed old password and email.cs" />
+    <Compile Include="Migrations\201605031606443_Removed old password and email.Designer.cs">
+      <DependentUpon>201605031606443_Removed old password and email.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +88,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604191706275_All the database.resx">
       <DependentUpon>201604191706275_All the database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605031606443_Removed old password and email.resx">
+      <DependentUpon>201605031606443_Removed old password and email.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
