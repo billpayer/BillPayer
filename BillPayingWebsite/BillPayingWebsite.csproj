@@ -232,6 +232,34 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\bills.jpg" />
+    <Content Include="Content\Sliders\static\css\no-theme\jquery-ui-1.10.3.custom.css" />
+    <Content Include="Content\Sliders\static\css\no-theme\jquery-ui-1.10.3.custom.min.css" />
+    <Content Include="Content\Sliders\static\disclosure-closed.png" />
+    <Content Include="Content\Sliders\static\disclosure-opened.png" />
+    <Content Include="Content\Sliders\static\humble-sliders.js" />
+    <Content Include="Content\Sliders\static\humble-sliders2.js" />
+    <Content Include="Content\Sliders\static\humble-sliders3.js" />
+    <Content Include="Content\Sliders\static\humble-sliders4.js" />
+    <Content Include="Content\Sliders\static\humble-sliders\disclosure-closed.png" />
+    <Content Include="Content\Sliders\static\humble-sliders\disclosure-opened.png" />
+    <Content Include="Content\Sliders\static\humble-sliders\humble-sliders.html" />
+    <Content Include="Content\Sliders\static\humble-sliders\humble-sliders.js" />
+    <Content Include="Content\Sliders\static\humble-sliders\index.html" />
+    <Content Include="Content\Sliders\static\humble-sliders\slider-bg.png" />
+    <Content Include="Content\Sliders\static\humble-sliders\slider-handle.png" />
+    <Content Include="Content\Sliders\static\index.html" />
+    <Content Include="Content\Sliders\static\index2.html" />
+    <Content Include="Content\Sliders\static\index3.html" />
+    <Content Include="Content\Sliders\static\index4.html" />
+    <Content Include="Content\Sliders\static\js\backbone-min.js" />
+    <Content Include="Content\Sliders\static\js\jquery-1.9.1.js" />
+    <Content Include="Content\Sliders\static\js\jquery-ui-1.10.3.custom.js" />
+    <Content Include="Content\Sliders\static\js\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Content\Sliders\static\js\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\Sliders\static\js\json2.js" />
+    <Content Include="Content\Sliders\static\js\underscore-min.js" />
+    <Content Include="Content\Sliders\static\slider-bg.png" />
+    <Content Include="Content\Sliders\static\slider-handle.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -243,6 +271,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sliders\static\disclosure.psd" />
+    <Content Include="Content\Sliders\static\slider-bg.psd" />
+    <Content Include="Content\Sliders\static\slider-handle.psd" />
     <None Include="Properties\PublishProfiles\billpayer4.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
