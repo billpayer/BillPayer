@@ -17,7 +17,7 @@ namespace BillPayingWebsite.Controllers
         DataContext dbContext = new DataContext();
 
         private ApplicationUserManager _userManager;
-
+        
         public ApplicationUserManager UserManager
         {
             get
@@ -54,26 +54,30 @@ namespace BillPayingWebsite.Controllers
         }
 
 
-      
+        [HttpPost]
         public ActionResult Edit(ApplicationUser model)
         {
-            /*
+
             if (ModelState.IsValid)
             {
-                dbContext.HouseHolds.Add(model);
 
-                var userId = User.Identity.GetUserId();
-                var appUser = dbContext.Users.FirstOrDefault(x => x.Id == userId);
-                model.Roommates.Add(appUser.UserInfo);
-                dbContext.SaveChanges();
-                //model.AddRoommate(appUser.UserInfo);
-                model.HeadOfHouseHold = appUser.UserInfo;
+                string Id = User.Identity.GetUserId();
+                ApplicationUser user = dbContext.Users.FirstOrDefault(u => u.Id.Equals(Id));
 
+                user.UserName = model.UserName;
+                user.Email = model.Email;
+                user.UserInfo.FirstName = model.UserInfo.FirstName;
+                user.UserInfo.LastName = model.UserInfo.LastName;
+                // user.UserInfo.Age = model.UserInfo.Age;
+                //user.UserInfo.Sex = model.UserInfo.Sex;
+                // user.UserInfo.Birthday = model.UserInfo.LastName;
+
+                dbContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 dbContext.SaveChanges();
-                return RedirectToAction("Details", new { id = model.Id });
+                return RedirectToAction("Profile", "Roommates");
             }
-            */
             return View(model);
+
         }
 
 
