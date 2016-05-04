@@ -68,10 +68,7 @@ namespace BillPayingWebsite.Controllers
                 user.Email = model.Email;
                 user.UserInfo.FirstName = model.UserInfo.FirstName;
                 user.UserInfo.LastName = model.UserInfo.LastName;
-                // user.UserInfo.Age = model.UserInfo.Age;
-                //user.UserInfo.Sex = model.UserInfo.Sex;
-                // user.UserInfo.Birthday = model.UserInfo.LastName;
-
+             
                 dbContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 dbContext.SaveChanges();
                 return RedirectToAction("Profile", "Roommates");
