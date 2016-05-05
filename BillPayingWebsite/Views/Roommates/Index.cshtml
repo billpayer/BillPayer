@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-4">
                 @*User Id: @User.Id*@
-                Super Secret Agent: @User.UserInfo.FirstName @User.UserInfo.LastName
+                User: @User.UserInfo.FirstName @User.UserInfo.LastName
             </div>
             <div class="col-md-4">
                 @Html.ActionLink("Profile", "Profile", new {id = User.Id})
