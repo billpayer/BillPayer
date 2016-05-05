@@ -54,6 +54,7 @@ namespace BillPayingWebsite.Controllers
         }
 
 
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(ApplicationUser model)
         {
@@ -63,13 +64,16 @@ namespace BillPayingWebsite.Controllers
                 string Id = User.Identity.GetUserId();
                 ApplicationUser user = dbContext.Users.FirstOrDefault(u => u.Id.Equals(Id));
 
-                user.UserName = model.UserName;
+
+
+              //  user.UserName = model.UserName;
                 user.Email = model.Email;
                 user.UserInfo.FirstName = model.UserInfo.FirstName;
                 user.UserInfo.LastName = model.UserInfo.LastName;
              
                 dbContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 dbContext.SaveChanges();
+
                 return RedirectToAction("Profile", "Roommates");
             
           //  return View(model);
@@ -79,9 +83,10 @@ namespace BillPayingWebsite.Controllers
         [Authorize]
         public ActionResult Edit()
         {
+            string Id = User.Identity.GetUserId();
+            ApplicationUser user = dbContext.Users.FirstOrDefault(u => u.Id.Equals(Id));
 
-
-            return View();
+            return View(user);
 
         }
 
