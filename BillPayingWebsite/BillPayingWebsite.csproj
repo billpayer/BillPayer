@@ -275,6 +275,7 @@
     <Content Include="Content\Sliders\static\slider-bg.psd" />
     <Content Include="Content\Sliders\static\slider-handle.psd" />
     <None Include="Properties\PublishProfiles\billpayer4.pubxml" />
+    <None Include="Properties\PublishProfiles\billpayer5.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
