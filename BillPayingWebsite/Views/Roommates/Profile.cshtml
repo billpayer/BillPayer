@@ -3,66 +3,66 @@
 @{
     ViewBag.Title = "Profile";
 }
-
+<center>
 <h2>Profile</h2>
+</center>
+<center>
+            <div class="thumbnail" height="wrap_content" width ="wrap_content">
 
-<div class="row">
-    <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-            <img src="http://breadedcat.com/wp-content/uploads/2012/02/cat-breading-tutorial-004.jpg" class="img-circle" height="144" width="177" />
-        </div>
-        </div> 
-    </div> 
+                <img src="http://breadedcat.com/wp-content/uploads/2012/02/cat-breading-tutorial-004.jpg" class="img-circle" height="144" width="177" />
+
+            </div>
+
+      
+</center>
+
+    <div>
+       
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Birthday)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Age)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Age)
+            </dd>
 
 
-        <div>
-            <h4>User</h4>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sex)
+            </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.FirstName)
-                </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Sex)
+            </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.LastName)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.LastName)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Birthday)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Birthday)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Age)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Age)
-                </dd>
-
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Sex)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Sex)
-                </dd>
-
-            </dl>
-        </div>
-        <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-            @Html.ActionLink("Back to List", "Index")
-        </p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        @Html.ActionLink("Back to List", "Index")
+    </p>
