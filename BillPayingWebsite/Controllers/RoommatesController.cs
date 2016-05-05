@@ -58,8 +58,7 @@ namespace BillPayingWebsite.Controllers
         public ActionResult Edit(ApplicationUser model)
         {
 
-            if (ModelState.IsValid)
-            {
+           
 
                 string Id = User.Identity.GetUserId();
                 ApplicationUser user = dbContext.Users.FirstOrDefault(u => u.Id.Equals(Id));
@@ -72,11 +71,19 @@ namespace BillPayingWebsite.Controllers
                 dbContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 dbContext.SaveChanges();
                 return RedirectToAction("Profile", "Roommates");
-            }
-            return View(model);
+            
+          //  return View(model);
 
         }
 
+        [Authorize]
+        public ActionResult Edit()
+        {
+
+
+            return View();
+
+        }
 
         [Authorize]
         [HttpPost]
