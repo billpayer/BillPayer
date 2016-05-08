@@ -5,6 +5,8 @@
 }
 <h2>@ViewBag.Title.</h2>
 
+<link href="~/Content/Sliders/static/css/no-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+
 <style type="text/css" media="screen">
     .slider-toplevel .slider-logo {
         float: left;
@@ -18,7 +20,7 @@
     }
 
     .slider-container {
-        background: url(~/Content/Sliders/static/slider-bg.png) no-repeat;
+        background: url(@Url.Content("~/Content/Sliders/static/slider-bg.png")) no-repeat;
         position: relative;
         float: left;
         top: 7px;
@@ -28,7 +30,7 @@
     }
 
     .slider-container .right {
-        background: url(~/Content/Sliders/static/slider-bg.png) no-repeat right;
+        background: url(@Url.Content("~/Content/Sliders/static/slider-bg.png")) no-repeat right;
         position: absolute;
         top: 0;
         right: -2px;
@@ -41,7 +43,7 @@
     }
 
     .ui-slider-handle {
-        background: url(~/Content/Sliders/static/slider-handle.png) no-repeat;
+        background: url(@Url.Content("~/Content/Sliders/static/slider-handle.png")) no-repeat;
         position: absolute;
         top: -3px;
         width: 11px;
@@ -55,7 +57,7 @@
     }
 
     .disclosure-triangle {
-        background: url(~/Content/Sliders/static/disclosure-closed.png) 0px 0px no-repeat;
+        background: url(@Url.Content("~/Content/Sliders/static/disclosure-closed.png")) 0px 0px no-repeat;
         cursor: pointer;
         float: left;
         width: 20px;
@@ -75,9 +77,10 @@
     }
 
     .no-transform .disclosure-opened {
-        background: url(~/Content/Sliders/static/disclosure-opened.png) 0px 0px no-repeat;
+        background: url(@Url.Content("~/Content/Sliders/static/disclosure-opened.png")) 0px 0px no-repeat;
     }
 </style>
+
 
 <script type="text/template" id="sliders-template">
     <div class="sliders-toplevel">
@@ -145,7 +148,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Bill.Cost, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Bill.Cost, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Bill.Cost, new { @class = "form-control"})
         </div>
     </div>
     <div class="form-group">
@@ -160,7 +163,7 @@
                     @Html.CheckBoxFor(m => m.RoommatesSelected[i].isBilled)
                     @Html.Label(@Model.RoommatesSelected[i].User.FirstName + " " + @Model.RoommatesSelected[i].User.LastName)
 
-
+                    
 
 
                 </div>
@@ -183,7 +186,7 @@
                 <div class="checkbox">
                     @Html.CheckBoxFor(m => m.Bill.Paid)
                     @Html.LabelFor(m => m.Bill.Paid)
-
+                    
                 </div>
             </div>
         </div>
@@ -210,71 +213,35 @@
     <script src="~/Content/Sliders/static/js/backbone-min.js"></script>
     <script src="~/Content/Sliders/static/humble-sliders4.js"></script>
 
-<script type="text/javascript">
-$( function() {
-    window.dbg1 = humbleSliders( 4000, $( "#sliders-holder" ), {
-      "splits": [ {
-          "class": "developers",
-          "name": "Developers",
-          "splits": [ {
-              "class": "dev1",
-              "name": "Developer #1",
-              "percent": ( 1.0 / 5.0 )
-            }, {
-              "class": "dev2",
-              "name": "Developer #2",
-              "percent": ( 1.0 / 5.0 )
-            }, {
-              "class": "dev3",
-              "name": "Developer #3",
-              "percent": ( 1.0 / 5.0 )
-            }, {
-              "class": "dev4",
-              "name": "Developer #4",
-              "percent": ( 1.0 / 5.0 )
-            }, {
-              "class": "dev5",
-              "name": "Developer #5",
-              "percent": ( 1.0 / 5.0 )
-            } ]
-        }, {
-          "class": "charity",
-          "name": "Charity",
-          "splits": [ {
-              "class": "charity1",
-              "name": "Charity #1",
-              "percent": ( 1.0 / 2.0 )
-            }, {
-              "class": "charity2",
-              "name": "Charity #2",
-              "percent": ( 1.0 / 2.0 )
-            } ]
-        }, {
-          "class": "other",
-          "name": "Other"
-      } ],
-      "allotments": {
-        "default": {
-          "developers": 0.75,
-          "charity": 0.15,
-          "other": 0.10
-        },
-        "developers": {
-          "developers": 1.00,
-          "charity": 0.00,
-          "other": 0.00
-        },
-        "charity": {
-          "developers": 0.00,
-          "charity": 1.00,
-          "other": 0.00
-        }
-      }
+    <script type="text/javascript">
+        $(function() {
+            window.dbg1 = humbleSliders((@Model.Bill.Cost * 100), $("#sliders-holder"), {
+                "splits": [ {
+                    "class": "user1",
+                    "name": "Roommate 1",
+                    "percent": (1.0 / 5.0)
+                }, {
+                    "class": "user2",
+                    "name": "Roommate 2",
+                    "percent": (1.0 / 5.0)
+                }, {
+                    "class": "user3",
+                    "name": "Roommate 3",
+                    "percent": (1.0 / 5.0)
+                }, {
+                    "class": "user4",
+                    "name": "Roommate 4",
+                    "percent": (1.0 / 5.0)
+                }, {
+                    "class": "user5",
+                    "name": "Roommate 5",
+                    "percent": (1.0 / 5.0)
+                }
+
+                ]
+        } );
     } );
-} );
 </script>
 }
-
-<link href="~/Content/Sliders/static/css/no-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet"/>
 
 
