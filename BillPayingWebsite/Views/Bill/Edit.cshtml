@@ -215,33 +215,31 @@
 
     <script type="text/javascript">
         $(function() {
-            window.dbg1 = humbleSliders((@Model.Bill.Cost * 100), $("#sliders-holder"), {
-                "splits": [ {
-                    "class": "user1",
-                    "name": "Roommate 1",
-                    "percent": (1.0 / 5.0)
-                }, {
-                    "class": "user2",
-                    "name": "Roommate 2",
-                    "percent": (1.0 / 5.0)
-                }, {
-                    "class": "user3",
-                    "name": "Roommate 3",
-                    "percent": (1.0 / 5.0)
-                }, {
-                    "class": "user4",
-                    "name": "Roommate 4",
-                    "percent": (1.0 / 5.0)
-                }, {
-                    "class": "user5",
-                    "name": "Roommate 5",
-                    "percent": (1.0 / 5.0)
-                }
 
-                ]
-        } );
-    } );
-</script>
+            var roommates = [
+                @foreach (var roommate in Model.RoommatesSelected)
+                {
+                    <text>{ "id": @roommate.Id, "name": "@roommate.User.FirstName @roommate.User.LastName" }</text>
+                    if (Model.RoommatesSelected.Last() != roommate)
+                    {
+                        <text>,</text>
+                    }
+                }
+            ];
+            var splits = [];
+            for (var cnt = 0; cnt < roommates.length; cnt++) {
+                splits.push({
+                    "class": roommates[cnt].id,
+                    "name": roommates[cnt].name,
+                    "percent": (1.0 / roommates.length)
+                });
+            }
+
+            window.dbg1 = humbleSliders((@Model.Bill.Cost * 100), $("#sliders-holder"), {
+                "splits": splits
+            });
+        });
+    </script>
 }
 
 
